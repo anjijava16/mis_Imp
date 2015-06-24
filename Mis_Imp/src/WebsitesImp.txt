@@ -5,13 +5,13 @@ http://www.techonthenet.com/sql/distinct.php
 http://javabelazy.blogspot.in/search?updated-min=2015-01-01T00:00:00%2B05:30&updated-max=2016-01-01T00:00:00%2B05:30&max-results=11
 http://placeforcoder.blogspot.com/2015/06/pharmacy-management-system.html
 http://javanotepad.com/mysql.php
-
-http://javarevisited.blogspot.in/…/top-20-string-coding-int…
-http://www.sanfoundry.com/java-programming-examples-set-st…/
-https://docs.oracle.com/…/d…/QandE/characters-questions.html
-http://www.careercup.com/page…
-http://ics.misterv.ca/…/2-1-java-st…/java-strings-samplecode
+http://www.codingpedia.org/ama/error-handling-in-rest-api-with-jersey/ (Videos)
+http://javarevisited.blogspot.in/â€¦/top-20-string-coding-intâ€¦
+http://www.sanfoundry.com/java-programming-examples-set-stâ€¦/
+https://docs.oracle.com/â€¦/dâ€¦/QandE/characters-questions.html
+http://www.careercup.com/pageâ€¦
+http://ics.misterv.ca/â€¦/2-1-java-stâ€¦/java-strings-samplecode
 http://www.java-examples.com/java-string-examples
-http://www.sanfoundry.com/java-programming-examples-set-st…/
+http://www.sanfoundry.com/java-programming-examples-set-stâ€¦/
 http://sampleprogramz.com/java/stringmanipulate.php
 http://placeforcoder.blogspot.com/2015/05/airline-reservation-system-in-java-gui.html (For GUI Projects)
