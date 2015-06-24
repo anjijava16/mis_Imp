@@ -1,0 +1,66 @@
+GROUP ID GROUPID, GROUPName
+Asse(Problem) ProblemName ,ProblemID
+
+
+http://www.7speaking.com/webservice/api.cfc?wsdl
+
+entergroups.com
+
+
+
+
+/**
+*Retrieves User using the email
+
+* @param email 
+            Email of the User
+* @return LoggedInUser object
+* @throws SQLException
+
+*/
+
+request.getSession(false);// it will check check session exist or not if yes return that session 
+getSession(true) will check whether a session already exists for the user. If yes, it will return that session object else it will create a new session object and return it.
+
+getSession(false) will check existence of session. If session exists, then it returns the reference of that session object, if not, this methods will return null.
+
+i)request.getSession();
+==>>request.getSession().getId();this will return the unique identifier for that session.
+
+======================================================================================================================
+
+public static boolean checkSessionvalidity(HttpServletRequest request){
+
+boolean valid=true;
+if(!request.getRequestURI().contains("signin") &&!request.getRequestURI().contains("signup")){
+HttpSession session=request.getSession(false);
+
+}
+====================================================================================================
+request.getRequestDispatcher(resource).forward(request, response); //(request is forwarding to anthoer page)
+
+forward : reqeust.getRequestDispatcher(resource).forward(reqeust,response);
+redirect: response.sendRedirect(getContextPath(request)+"/signin");
+
+}
+public static String getContextPath(HttpSerReq req){
+String scheme=req.getScheme();//http or https
+String host=req.getServerName();
+String port=req.getServerPort();
+String contextpath=req.getContextPath();
+return  schem+".//"+host+":"+port+contextpath
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

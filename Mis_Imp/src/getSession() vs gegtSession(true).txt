@@ -1,0 +1,12 @@
+  request.getSession()
+This method will check for the existing session;if exist its return otherwise create a new session for the request.
+    request.getSession().getId();
+This will return the unique identifier for that session.
+    request.getSession(false);
+This method takes the boolean value.This method check whether there is an existing session present for that user(request);if exist it return that session otherwise it return null i.e it won't create new session.
+Just to add more information for session.
+    request.getSession(true);
+This method checks for the existing current session for that user(request) and if the session exist it will return that session or otherwise it create new session for that user.
+    request.getSession() works like request.getSession(true)
+Reference :
+

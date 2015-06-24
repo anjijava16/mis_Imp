@@ -1,0 +1,36 @@
+Arch :Core Java
+
+Class :Business Functionlay
+
+OGNL: Complete requst -->response estimate
+
+JUNIT : Class (X)
+
+
+@Test
+p c JnTextExample{
+
+
+@Test
+p void test(){
+
+ assertTrue();
+
+}
+}
+
+
+
+dangerGoodsData Service
+dangerGoodsData  Validation Service
+
+
+
+Handle Untit -->Container ==>Commedity<<==>>
+
+Open JPA
+
+
+
+JUNIT --->OGNL
+

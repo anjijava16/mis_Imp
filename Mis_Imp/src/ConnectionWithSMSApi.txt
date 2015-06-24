@@ -1,0 +1,45 @@
+import org.apache.commons.httpclient.*;
+import org.apache.commons.httpclient.methods.*;
+import org.apache.commons.httpclient.params.HttpMethodParams;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+public class HttpUrlPush {
+ public static void main(String[] args)throws IOException {
+ HttpClient client=null;
+ PostMethod post=null;
+ String sURL;
+client = new HttpClient(new MultiThreadedHttpConnectionManager());
+/* Set your proxy settings */
+client.getHostConfiguration().setProxy("Your Proxy", ProxyPort);
+client.getHttpConnectionManager().getParams().setConnectionTimeout(30000);//set
+your time
+sURL = " http://world.smslane.com/vendorsms/pushsms.aspx";
+ post = new PostMethod(sURL);
+ //give all in string
+ post.addParameter("user", "UserName");
+ post.addParameter("password", "Password");
+ post.addParameter("msisdn", "919898123456");
+ post.addParameter("msg", "Test Message from SMSLane");
+ post.addParameter("sid","WebSMS");
+ post.addParameter("fl", "0");
+
+ /* PUSH the URL */
+ try {
+ int statusCode = client.executeMethod(post);
+ System.out.println(post.getStatusLine().toString());
+ if (statusCode != HttpStatus.SC_OK) {
+ System.err.println("Method failed: " + post.getStatusLine());
+ }
+ System.out.println(post.getResponseBodyAsString()); 
+ }
+ catch (Exception e) {
+ e.printStackTrace();
+ }
+ finally {
+ post.releaseConnection();
+ }
+ }
+}
+/* Developed by using COMMONS-HTTPCLIENT Api of apache
+Note- set the classpath to all the jar files of commons-httpclient api and its
+Dependencies */

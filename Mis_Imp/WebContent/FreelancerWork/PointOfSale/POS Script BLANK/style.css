@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media print {
+  #menu, .paging, .noprint, input[type="button"], input[type="submit"], input[name="find"] { display: none; }
+ }
+
+body { margin: 0px; padding: 0px; font-size: 10pt; font-family: Arial, Helvetica, sans-serif; }
+h1 { margin: 0px; padding: 5px; font-size: 16pt; background-color: #FDFDFD; display: block; border-bottom: 1px solid #AAAAAA; }
+p {  }
+table { font-size: 10pt; font-family: Arial, Helvetica, sans-serif; border-collapse: collapse;}
+table a { font-size: 10pt; font-family: Arial, Helvetica, sans-serif; }
+
+a { font-size: 11pt; color: #000000; }
+input { width: 200px; }
+select { width: 200px; }
+textarea { width: 300px; }
+textarea.larger { width: 500px;}
+.input1 { width: 200px; }
+.input2 { width: 300px; }
+.input3 { width: 100px; }
+#container { margin: 0px 5px 0px 5px; }
+
+h2 { margin: 0px; padding: 5px; font-size: 16pt; background-color: #FDFDFD; display: block; border-bottom: 1px solid #AAAAAA; float: left; position: relative; top: 0;}
+span.close { position: relative; float: right; cursor:pointer; }
+
+#menu { display: block;}
+#menu a { padding-right: 10px; }
+#submit { background: url(icons/save.png) no-repeat center center; width: 40px; /*height: 40px;*/ }
+#search { border: 1px solid #BFBFBF; background: #FFFFFF; width: 50px; /*height: 28px;*/  font-size: 14pt; }
+#delete { background: url(icons/deleted.png) no-repeat center center; width: 40px; /*height: 40px;*/  }
+
+input#textField { border: 1px solid #BFBFBF; background: url(icons/search.png) no-repeat 10px 5px; padding-left: 35px; /*height: 28px;*/ width: 200px; font-size: 14pt; }
+h3 { font-size: 16pt; font-weight: bold; }
+h4 { font-size: 12pt; font-weight: bold; }
+select.size1 { width: 100px; }
+
+input[type="button"] { /*width: 100px; height: 35px; overflow: auto;*/ font-weight: bold; background: #555; color: #FFF;}
+input[type="submit"] { /*width: 100px; height: 35px; overflow: auto;*/ font-weight: bold; background: #98bf21; color: #000; border: 1px solid #AAA; }
+.textbox { 
+    background: #C1E52C url(icons/searching2.png) no-repeat;/* 4px 4px; */
+    border: 1px solid #999; 
+    outline:0; 
+    padding-left: 50px;
+    /*height:35px;*/
+    width: 250px;
+	/*line-height: 30px;*/
+	font-size: 13pt;
+  } 
+.textbox2 { 
+    border: 1px solid #999; 
+    outline:0; 
+    /*height:35px;*/
+    width: 250px;
+	/*line-height: 28px;*/
+	font-size: 13pt;
+  } 
+.textbox3 { 
+	font-size: 14pt;
+	color: #666;
+	text-decoration: underline;
+  } 
+.selectbox { 
+    background: #C1E52C; 
+    border: 1px solid #999; 
+    outline:0; 
+    /*height:35px;*/
+    width: 100px;
+	/*line-height: 30px;*/
+	font-size: 13pt;
+  } 
+input[type="text"] { /*height: 35px; overflow: auto;*/ font-weight: bold; font-size: 13pt;}
+select { /*width: 200px; height: 35px; overflow: auto;*/ font-weight: bold; font-size: 13pt;}
+input[type="submit"], input[type="button"], button { /*width: 100px; height: 35px; overflow: auto;*/ font-weight: bold; font-size: 13pt; background: #555; color: #FFF;}
+.submitme { width: 150px; /*height:35px; overflow: auto;*/ font-weight: bold; background: #98bf21; color: #FFF; border: 1px solid #AAA; }
+.submitme2 { width: 150px; /*height:35px; overflow: auto;*/ font-weight: bold; background: #555; color: #FFF; border: 1px solid #AAA; }
+

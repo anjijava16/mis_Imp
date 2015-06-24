@@ -1,0 +1,11 @@
+@page {
+ margin: 0cm;
+ }
+body { padding: 0; margin: 0; font-family: arial; width: 70mm; text-align: center; font-size: 3.5mm; }
+h2 { font-size: 5.0mm; line-height: 5.5mm; margin: 0; padding: 0;}
+table { font-size: 3.5mm; border-collapse: collapse; width: 100%; }
+table td { vertical-align: top; }
+.footer { font-size: 3.5mm; margin-bottom: 10px; }
+.bottom-dotted-line td { border-bottom: 0.5mm dotted black; font-weight: bold; text-align: right; }
+.item .item-price, .value, .gst-amount, .total-amount { text-align: right; }
+.total { font-weight: bold; }

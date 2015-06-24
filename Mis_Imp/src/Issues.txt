@@ -1,0 +1,21 @@
+Issues 
+
+i)jdbcexceptionreporter communications link failure Issue
+
+
+ii)What is bouncy castle library are to be used for this
+
+iii)EJB SingleTon Connecery occureny
+ https://developer.jboss.org/thread/241832
+ 
+ 
+iv)ERP Big Application what is em.merge vs em.update
+   http://sourceforge.net/projects/optinfraenterpirseplatform/?source=directory
+   
+v)JdbcTemplate using IN Operator issue's 
+http://www.coderanch.com/t/651481/Spring/Spring-JdbcTemplate-unable-customers-details#3009797
+
+v) oracle-where-in-limitation-to-1000-hibernate Issues 
+  i.e :: http://stackoverflow.com/questions/7758198/hibernate-oracle-in-clause-limitation-how-to-solve-it
+  
+  

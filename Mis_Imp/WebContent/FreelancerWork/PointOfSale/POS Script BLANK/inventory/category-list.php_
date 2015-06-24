@@ -1,0 +1,81 @@
+<?php
+require_once("../pos-dbc.php");
+require_once("../functions.php");
+checkAuth();
+error_reporting(E_ALL^E_WARNING^E_NOTICE^E_DEPRECATED);
+?>
+<link rel="stylesheet" href="../style.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.show_popup_calc').click(function(){
+		var l=$(this).attr("href");
+		
+		$("#popup_calc").remove();
+		$('body').append('<div id="popup_calc" style="position:fixed;top:150px;left:100px;background:#f5f5f5;border:5px solid #888;padding:20px;margin:auto;width:325px;height:325px"><div id="close_calc" style="cursor:pointer;position:absolute;top:0;right:0;font-weight:bold;font-size:16pt;">X</div><iframe width="325" height="325" src="'+l+'" scrolling="no"/></div>');
+		var w=$('#popup_calc').outerWidth();
+		var bw=$('body').width();
+		var x=(bw-w)/2;
+		$('#popup_calc').css('left',x);
+		return false;
+	});
+	$('#close_calc').live('click', function(){
+		$("#popup_calc").remove();
+	});
+	window.close_calc = function(){
+		$("#popup_calc").remove();
+		return false;
+	}
+});
+</script>
+
+<div id="container">
+
+<?php
+
+        // number of results to show per page
+        $per_page = 25;
+        $find = isset($_REQUEST['find']) && $_REQUEST['find'] != 'search text' ? mysql_real_escape_string($_REQUEST['find']) : '';
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 0;
+        
+$result = mysql_query("SELECT * FROM inventory_subcategory ORDER BY category_name, subcategory LIMIT ".($page*$per_page).", $per_page;"); 
+        
+        $pagination = createPagination('inventory_subcategory', $page, './'.basename(__FILE__).($find != '' ? "?find=".urlencode($find) : ''), $per_page, "category_name LIKE'%$find%' OR subcategory LIKE'%$find%'");
+        
+        // display pagination
+
+		include ("header-inventory.php");
+		echo "<h4>Category Listing</h4>";
+		echo "<input type='button' onClick=\"window.location='category-add.php'\" value='Add' />";
+		echo "<p>$pagination</p>";
+                
+        // display data in table
+        echo "<table border='1' style=\"width:400px;margin:auto\">";
+        echo "<tr>
+					<th width=200>Category</th>
+					<th width=200 colspan=2>Sub Category</th>
+			  </tr>";
+
+        // loop through results of database query, displaying them in the table 
+        if(mysql_num_rows($result) > 0)
+	    {
+               // make sure that PHP doesn't try to show results that don't exist
+                while($row = mysql_fetch_assoc($result)){
+        
+                echo "<tr>";
+				echo "<input type='hidden' name='id' value='. $cat_id; .'/>";
+                echo '<td valign=top>' . $row['category_name'] . '</td>';
+                echo '<td valign=top>' . $row['subcategory'] . '</td>';
+                echo '<td valign=top align=center><a href=category-delete.php?cat_id=' . $row['cat_id'] . '><font color=red>X</font></td>';
+				echo '</tr>';
+        }
+	}
+        // close table>
+        echo "</table>"; 
+        
+		echo "<p>$pagination</p>";
+        // pagination
+        
+?>
+
+</div>

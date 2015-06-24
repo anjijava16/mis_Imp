@@ -1,0 +1,77 @@
+Project Description:
+
+I am wanting to have modifications done to an existing script source currently available on the net. I have the choice to either buy it outright or pay monthly, but the monthly option does not give you the option to make modifications.
+I can provide my current system, of which i'm wanting to incorporate into the current PHP Point Of Sale system. I will purchase the system from phppos when I feel that the freelancer has the ability to do the job or alternatively if they wish to create from scratch and incorporate my existing scripts.
+I am on a limited budget as I am only a small business which has been pretty slow of late and would like to see if such can be created and ready for a July 1 2015 roll out which is the start of the new financial year.
+
+More information is available if you wish to ask further questions.
+
+I will point out that the php point of sale is located here: http://www.phppointofsale.com/
+have a look, use the demo.
+I will not only need some modifications made to this current script, but also further additions, including those already on my system that need to be transferred over which are also written in php using a mysql database.
+The full set of components for the script to work satisfactorily for me are:
+Sales:
+Create invoice or quote.
+Define the register terminal so it knows what size to print the receipt.
+View past sales.
+Email invoices to customers.
+Apply discounts to sales if the customer selected is a trade customer.
+
+Inventory:
+Add/view/edit/delete stock items.
+Stocktake
+Category List
+Multi item add/edit/delete
+Record waste
+Purchasing
+Discounts
+
+Customers:
+Add/view/edit/delete customers.
+Send email to customers
+
+Expenses:
+Add/view/edit/delete expenses not related to inventory items.
+
+Suppliers:
+Add/view/edit/delete suppliers.
+
+Reports:
+Stock On Hand value of all stock on hand
+Stock Reorder list
+Purchase report list
+Sold report list
+Customer purchase list
+
+Financial Management:
+Cash Till Report - for terminals that maintain a cash float, for use of entering cash in drawer when opening then when closing at the end of the day
+Cash Log report - report of all totals of transactions for any given day/month
+Sales category report
+Expense category report
+GST report (which includes Payroll)
+
+Payroll:
+Add/view/edit/delete employees.
+Create Roster
+Print Roster
+Pay & Tax Rates
+
+Settings / Company Setup:
+Define business (as more than one business name is being used and depends on the sale as to which business name will display on the invoice.
+
+I am more than happy to provide the current layout I have and if you wish to view the php point of sale website for what is currently there.
+
+If the price is right, payment will be made via PayPal Australia's website. This is the only form of payment method that I feel secure to use.
+
+Any questions, please ask.
+Additional Project Description:
+
+06/15/2015 at 13:58 IST 
+I've attached 2 files of my current system. Please note the current db structure is just the structure, no data to save space and to provide security to both my business and my current/past customers.
+
+Please note, the main emphasis is firstly, ensuring accuracy is there as information related to sales/expenses/wages is imperative as I do have to report this information to the Australian Taxation office.
+Secondly, a new more modern look with flexibility and easy to use. I've never been one to have to press the mouse button several times to open a page when it can be done in one or two mouse clicks.
+
+My current shop setup is I have 2 computers out the front which mainly do the sales, and 2 computers out the back which can do anything. The differences are the 2 out the front have a modified screen and will print a receipt via a receipt printer. The computers out the back see all functions (based on the user login details) and prints an A4 sized invoice.
+
+Also please note my current local host is xampp 1.7.7. I realise there is a later version, but my current system works perfectly on this version (not so much on the later versions). The new system will need to be able to at least view the existing systems .pdf invoices by searching customer name, how you would do that, i have no idea as all current pdf invoices are saved as the invoicenumber.pdf

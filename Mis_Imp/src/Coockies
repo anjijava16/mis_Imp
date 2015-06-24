@@ -1,0 +1,19 @@
+// create session
+            HttpSession session = request.getSession();
+            session.setAttribute("userRole", userES.getUserRole());
+            session.setAttribute("userId", userES.getId());
+            session.setMaxInactiveInterval(30*60); // for 30 min
+
+
+ How to create Coockies in WebApplications 
+
+ Coockie userCookie=new Coockie("userRole",userEs.getUserRole().toString());
+ Coockie userId=new Coockie("userId",userEs.getId());
+ 
+ userCookie.setMaxAge(30*60);
+ userId.setMaxAge(30*60);
+ 
+ response.addCookie(userCookie);
+ response.addCookie(userId);
+            
+            

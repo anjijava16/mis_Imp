@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="tutorials.xsl"?>
+<tutorials>
+<tutorial>
+<name>XML Tutorial</name>
+<name>Homer Flinstone</name>
+<url>http://www.quackit.com/xml/tutorial</url>
+</tutorial>
+<tutorial>
+<name>HTML Tutorial</name>
+<name>Fred Simpson</name>
+<url>http://www.quackit.com/html/tutorial</url>
+</tutorial>
+<tutorial>
+<name>XPath Tutorial</name>
+<name>w3c Tutorial</name>
+</tutorial>
+</tutorials>

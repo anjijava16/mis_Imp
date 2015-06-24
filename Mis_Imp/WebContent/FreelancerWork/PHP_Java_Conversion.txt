@@ -1,0 +1,378 @@
+In the attached zip file there is a PHP script, which is a website back-end API.
+The password to the zip file is published at https://docs.google.com/document/d/19DGZ0POngO6ieziNeJJYwqQKuQrU3C9lALaxJmEg_4Q/edit?usp=sharing
+
+I need the PHP script to be rewritten in Java. Rewrite must make full use of Spring MVC for controller code & JSON output, Spring JDBC Template for SQL queries, POJOs for data manipulation. Target runtime is Tomcat 7.0 with Java 1.8. Target IDE is Eclipse Luna SR2. Code must be parallel-tested to prove it produces exact same results as the PHP version.
+
+<?php
+/**
+ * COPYRIGHT (C) 2007-2014 ZIGABYTE CORPORATION. ALL RIGHTS RESERVED.
+*
+* CONFIDENTIAL AND PROPRIETARY
+*
+* 		This file is an unpublished Trade Secret of Zigabyte Corporation.
+* 		Theft or misappropriation of Trade Secrets is a federal crime prosecutable
+* 		under the U.S. Industrial Espionage Act of 1996, 18 U.S.C. §§ 1831-1839;
+* 		it is also a crime in all World Trade Organization member countries.
+*
+* NON-DISCLOSURE AGREEMENT
+*
+* 		If you received a copy of this file in order to perform a work for hire, you agree to delete
+* 		all copies of this and other received files as soon as the work is completed or cancelled.
+*		Opening of this file constitutes acceptance of the agreement for all files in this project.
+*/
+
+// test links:
+// http://localhost/git/ctc_deploy/Chicago_Top_Condos/private_api/search.api.php?SortBy=Price&PriceLow=100000&PriceHigh=300000&Bedrooms=2&Baths=2&PropertyType=any&AreaCode=8032&Neighborhood=&ZipCode=
+// http://localhost/git/ctc_deploy/Chicago_Top_Condos/private_api/search.api.php?noexec=1&PriceLow=250000&PriceHigh=600000&Bedrooms=2&Baths=2&PropertyType[]=any&AreaCode[]=8008&page=11
+
+require_once 'internal/Config.class.php';
+require_once 'internal/iDatabase.class.php';
+require_once 'internal/PhotoManager.class.php';
+
+$db = new iDatabase();
+$sh = new SearchHelper();
+
+if(isset($_GET['noexec'])) { // do not execute query, just get the SQL
+	$sh->noexec = 1;
+	$sql = $sh->searchPerProcedureCallSql($db, $_GET);
+	$sh->doQuery($db, $sql);
+	header('Content-Type: application/json'); echo json_encode(array('base_criteria' => $sh->criteria), JSON_PRETTY_PRINT);
+	return;
+}
+
+if(!isset($_GET['get_favorites'])) {
+	if(!isset($_GET['_agent_proxy'])) {
+		$user_id = isset($_GET['_user_id']) ? $_GET['_user_id'] : null;
+		$today = date("Y-m-j H:i:s");
+		$search_type = 'L';
+		$sh->setLoggerParams(true, $user_id, $today, $search_type);
+	}
+	if(!isset($_GET['per_page'])) die('ERROR: per_page is required');
+	
+	$sql = $sh->searchPerProcedureCallSql($db, $_GET);
+}
+else {
+	$sql = sprintf("call sp_get_favorites(%d)", $_GET['get_favorites']);
+}
+$input = (object)$_GET;
+
+if(isset($_GET['_sql'])) {
+	print $sql;
+}
+
+$sh->doQuery($db, $sql);
+
+$sh->computePageInfo($db, $input);
+
+header('Content-Type: application/json'); echo json_encode($sh, JSON_PRETTY_PRINT);
+
+
+/**
+ * Main search function.
+ * Converts HTML input form fields to MySQL Stored Procedure Call.
+ *
+ * @param
+ *        	$input
+ * @param
+ *        	$per_page
+ * @param
+ *        	$includeSort
+ * @return unknown_type
+ */
+class SearchHelper {
+
+	public $results;
+	public $criteria;
+	public $totalRecords;
+
+	public $need_logger = 0;
+	public $user_id = 0;
+	public $date = '';
+	public $search_type = '';
+	public $join_with_geo = 0;
+	public $page;
+	public $noexec = 0;
+
+	function searchPerProcedureCallSql(iDatabase $db, $input) {
+
+		$error_reporting = error_reporting ( E_ALL & ~ E_NOTICE );
+		
+		$per_page = $input['per_page'];
+		$vSortBy =  $this->sortBy($input['SortBy']);
+		$tPropertyType = $this->paramList ( $input, 'PropertyType', '' );
+		$tAreaCode = $this->paramList ( $input, 'AreaCode' );
+		$sNeighborhood = $this->paramList ( $input, 'Neighborhood' );
+		$iZipCode = $this->paramList ( $input, 'ZipCode', '' );
+		
+		$iZipCode = round ( $iZipCode ); // bug: array currently not supported
+		
+		$cCounty = $input ['County'];
+		$vStreetNumber = $input ['StreetNumber'];
+		$vStreetName = $input ['StreetName'];
+		$vStreetDirection = $input ['StreetDirection'];
+		$vUnitNumber = $input ['UnitNumber'];
+		
+		$iPriceHigh = ( int ) preg_replace ( '/[^\d\.]/', '', $input ['PriceHigh'] );
+		$iPriceLow = ( int ) preg_replace ( '/[^\d\.]/', '', $input ['PriceLow'] );
+		$iBath = ( double ) $input ['Baths'];
+		$iBed = ( int ) $input ['Bedrooms'];
+		$iNewConstruction = ( int ) $input ['NewConstruction'];
+		$iVirtualTour = ( int ) $input ['VirtualTour'];
+		$iPhotos = ( int ) $input ['Photos'];
+		$vYearBuiltHigh = $input ['YearBuiltHigh'];
+		$vYearBuiltLow = $input ['YearBuiltLow'];
+		$dDistanceToTrain = doubleval ( $input ['DistanceToTrain'] );
+		$dDistanceToStarbucks = doubleval ( $input ['DistanceToStarbucks'] );
+		$dtChangedSince = $input ['changedSince'] ? "'" . date ( "Y-m-d H:i:s", strtotime ( $input ['changedSince'] ) ) . "'" : 'null';
+		
+		$sizeMax = $input ['SizeMax'] == '' ? 0 : ( int ) $input ['SizeMax'];
+		$sizeMin = $input ['SizeMin'] == '' ? 0 : ( int ) $input ['SizeMin'];
+		$assessmentMax = $input ['AssessmentMax'] == '' ? 0 : ( int ) $input ['AssessmentMax'];
+		$taxesMax = $input ['TaxesMax'] == '' ? 0 : ( int ) $input ['TaxesMax'];
+		$unitFeatures = "";
+		if (isset ( $input ['UnitFeatures'] )) {
+			$uf = array_values ( $input ['UnitFeatures'] );
+			sort ( $uf );
+			$unitFeatures = "%" . implode ( '%', $uf ) . "%";
+		}
+		
+		$tInclStatus = "";
+		$tExclStatus = "";
+		$inclStatus = array ();
+		$exclStatus = array ();
+		
+		if ($input ['BackOnMarket'] == 1) {
+			array_push ( $inclStatus, 'BOMK' );
+		} elseif ($input ['BackOnMarket'] == 2) {
+			array_push ( $exclStatus, 'BOMK' );
+		}
+		if ($input ['NewListing'] == 1 or $input ['NewOnMarket'] == 1) {
+			array_push ( $inclStatus, 'NEW' );
+		} elseif ($input ['NewListing'] == 2 or $input ['NewOnMarket'] == 2) {
+			array_push ( $exclStatus, 'NEW' );
+		}
+		if ($input ['PriceChanged'] == 1 or $input ['PriceReduced'] == 1) {
+			array_push ( $inclStatus, 'PCHG' );
+		} elseif ($input ['PriceChanged'] == 2 or $input ['PriceReduced'] == 2) {
+			array_push ( $exclStatus, 'PCHG' );
+		}
+		if ($input ['ReActivated'] == 1) {
+			array_push ( $inclStatus, 'RACT' );
+		} elseif ($input ['ReActivated'] == 2) {
+			array_push ( $exclStatus, 'RACT' );
+		}
+		
+		if ($input ['AvailableOnly'] == - 1) { // AvailableOnly of 0 and 1 are equivalent (non-negative-one)
+			array_push ( $inclStatus, 'CTG' );
+			array_push ( $inclStatus, 'SOLD' ); // in stored proc, SOLD includes NULL
+		}
+		
+		if (! count ( $inclStatus ) && ! count ( $exclStatus )) {
+			$tInclStatus = 'ACTV,BOMK,NEW,PCHG,RACT';
+		} else {
+			$tInclStatus = implode ( ',', $inclStatus );
+			$tExclStatus = implode ( ',', $exclStatus );
+		}
+		
+		$tStreetsLimit = $input ['North'] . ',' . $input ['South'] . ',' . $input ['East'] . ',' . $input ['West'];
+		
+		if (! $input ['page']) {
+			$this->page = 1;
+			$iPage = 1;
+		} else {
+			$iPage = ( int ) $input ['page'];
+			$this->page = $input ['page'];
+		}
+		
+		error_reporting ( $error_reporting );
+		
+		$iPerPage = ( int ) $per_page;
+		
+		$sql = "call sp_perform_search(/*logger=*/{$this->need_logger}, /*user_id=*/{$this->user_id}, /*changed_since=*/$dtChangedSince, /*search_type=*/'{$this->search_type}', /*property_type=*/'$tPropertyType', /*area_codes=*/'$tAreaCode', /*neighborhood=*/'$sNeighborhood', /*county=*/'$cCounty', " . "/*street_number=*/'$vStreetNumber', /*street_name=*/'$vStreetName', /*street_dir=*/'$vStreetDirection', /*unit_number=*/'$vUnitNumber', /*zipcode=*/$iZipCode, /*price_high=*/$iPriceHigh, /*price_low=*/$iPriceLow, /*baths=*/$iBath, /*bedrooms=*/$iBed, /*new_construction=*/$iNewConstruction, /*virtual_tour=*/$iVirtualTour, /*photos=*/$iPhotos, " . "/*year_built_high=*/'$vYearBuiltHigh', /*year_built_low=*/'$vYearBuiltLow', /*distance_train=*/$dDistanceToTrain, /*max_assessment=*/$assessmentMax, /*size_max=*/$sizeMax, /*size_min=*/$sizeMin, /*max_taxes=*/$taxesMax, /*unit_features=*/'$unitFeatures', /*distance_coffeeshop=*/$dDistanceToStarbucks, /*status_include=*/'$tInclStatus', " . "/*status_exclude=*/'$tExclStatus', /*street_limit=*/'$tStreetsLimit', /*page_number=*/$iPage, /*sort_by=*/'$vSortBy', /*iPerPage=*/$iPerPage, /*join_with_geo=*/{$this->join_with_geo}, /*explain=*/'', /*noexe=*/$this->noexec, @where_query, @found_rows)";
+		//$this->sql = $sql;
+		return $sql;
+	}
+	
+	function enrich(array $row) {
+		$photoMgr = new PhotoManager();
+		$row['picture_url'] = $photoMgr->getMainPhoto($row['LN_LIST_NUMBER']);
+		$row['full_bath'] = round($row['BTH_BATHS']);
+		$row['half_bath'] = 10 *($row['BTH_BATHS'] - round($row['BTH_BATHS']));
+		
+		$row['CTCX_DIST_TRAIN'] = sprintf('%.02f', $row['CTCX_DIST_TRAIN']);
+		$row['CTCX_DIST_STARBUCKS'] = sprintf('%.02f', $row['CTCX_DIST_STARBUCKS']);
+
+		$parking = str_replace(',', ', ', $row['CTCX_PARKING']);
+		if(strlen($parking) > 50) {
+			$parking = substr($parking, 0, 50) . "...";
+		}
+		$row['PAR_PARKING_DESCRIPTION_50'] = $parking;
+		return $row;
+	}
+	
+	function doQuery(iDatabase $db, $sql) {
+		$this->results = array ();
+		
+		$db->multi_query ( $sql );
+		
+		do {
+			if ($result = $db->store_result ()) {
+				while ( NULL !== $e = $db->row ( $result ) ) {
+					$this->results [] = $this->enrich($e);
+				}
+				$db->free_result ( $result );
+			}
+		} while ( $db->next_result () );
+		
+		$this->criteria = ''; // for save search
+		$this->totalRecords = 0;
+		
+		$db->multi_query ( "select @where_query as where_query, @found_rows as `found_rows`" );
+		if ($result = $db->store_result ()) {
+			$row = $db->row ( $result );
+			
+			$criteria = $row ['where_query'];
+			$criteria = preg_replace('/BETWEEN (\d+) AND \1/', '= $1', $criteria);
+			$criteria = preg_replace('/ ?LIMIT \d+,\d+/', '', $criteria);
+			$criteria = preg_replace('/ ?order by \w+\.\w+ ?(asc|desc)?/', '', $criteria);
+			$criteria = preg_replace('/ and \w+\.\w+ LIKE \'\%\'/i', '', $criteria);
+			$criteria = preg_replace('/ and \( ?idx_search.ST_STATUS IN \(.*?\) ?\)/', '', $criteria);
+			$this->criteria = preg_replace('/^ and \( 1=1\) and /i', '', $criteria);
+			
+			$this->totalRecords = $row ['found_rows'];
+			$db->free_result ( $result );
+			$db->next_result ();
+		}
+	}
+
+    function paramList($input, $parmName, $quote = '"') {
+        if (is_array($input[$parmName])) {
+        	$vals = $input[$parmName];
+        	foreach ($vals as $k => $v) {
+        		$vals[$k] = $quote . $v . $quote;
+        	}
+            return implode(',', array_values($vals));
+        }
+        else {
+            return '';
+        }
+    }
+    
+    public function sortBy($includeSort) {
+    	$vSortBy = '';
+    	if ($includeSort) {
+    		$sortMap
+    		= array( 'Newest' => 'LN_LIST_NUMBER DESC',
+    				'LastChange' => 'CTCX_CHANGE_TS DESC',
+    				'Oldest' => 'LN_LIST_NUMBER',
+    				'Price' => 'LP_LIST_PRICE DESC',
+    				'LowPrice' => 'LP_LIST_PRICE',
+    				'NewBuilt' => 'if(BLT_YEAR_BUILT between 1800 and 2100,BLT_YEAR_BUILT,0) DESC',
+    				'OldBuilt' => 'if(BLT_YEAR_BUILT between 1800 and 2100,BLT_YEAR_BUILT,9999)',
+    				'East/West' => 'ifnull(CTCX_LONGITUDE,-99) DESC',
+    				'West/East' => 'ifnull(CTCX_LONGITUDE,99)',
+    				'North/South' => 'ifnull(CTCX_LATITUDE,-99) DESC',
+    				'South/North' => 'ifnull(CTCX_LATITUDE,99)',
+    				'LowAssessment' => 'ifnull(ASM_ASSESMENT_ASSOCIATION_DUES,999999)',
+    				'LowTax' => 'ifnull(CTCX_TAX_AMOUNT,999999)',
+    				'LargeSize' => 'ASF_APPROXIMATE_SQUARE_FOOTAGE DESC',
+    				'NearL' => 'ifnull(CTCX_DIST_TRAIN,999999)',
+    				'BadData' => 'CTCX_BAD_DATA DESC' );
+    
+    		$vSortBy = $sortMap[$includeSort];
+    		if(!$vSortBy) $vSortBy = 'LN_LIST_NUMBER DESC';
+    	}
+    	return $vSortBy;
+    }
+    
+    function setLoggerParams($need_logger = false, $user_id = 0, $date = "", $search_type = "") {
+    	$this->need_logger = $need_logger ? 1 : 0;
+    	$this->user_id = (int) $user_id;
+    	$this->date = $date;
+    	$this->search_type = $search_type;
+    }
+
+    function setJoinWithGeoAddress($join_with_geo = false) {
+    	$this->join_with_geo = $join_with_geo ? 1 : 0;
+    }
+    
+    function computePageInfo($db, $input) {
+
+    	$this->noindex = ($this->totalRecords == 0) ? 1 : 0;	// don't index empty result pages
+    	 
+    	if($this->totalRecords == 0) {
+    		$priceTag = '';
+    	}
+    	else if(isset($input->PriceHigh) && $input->PriceHigh > 0) {
+    		$priceTag = "Priced \$" . number_format(preg_replace('/[^\d\.]/','',$input->PriceLow)) . ' to $' .
+    				number_format(preg_replace('/[^\d\.]/','',$input->PriceHigh));
+    	}
+    	else if(isset($input->PriceLow) && $input->PriceLow > 0) {
+    		$priceTag = "Priced \$" . number_format(preg_replace('/[^\d\.]/','',$input->PriceLow)) . ' and Up';
+    	}
+    	else {
+    		$priceTag = "All Prices";
+    	}
+    	
+    	if(isset($input->ZipCode) && sizeof($input->ZipCode) == 1 && sizeof($this->results)>0) {
+    		$singleZipCode = $input->ZipCode;
+    		$singleZipCode = $singleZipCode[0];
+    		$this->title = "$singleZipCode Condos, Lofts, Town Homes, Houses - ";
+    		$this->pagename = "Properties For Sale in Zip Code $singleZipCode, " . $priceTag;
+    		$this->description = "Search Results";
+    	}
+    	else if(isset($input->AreaCode) && sizeof($input->AreaCode) == 1 && sizeof($this->results)>0) {
+    		$singleAreaCode = $input->AreaCode;
+    		$singleAreaCode = $singleAreaCode[0];
+    		$neighborhood = $this->results[0]['AR_AREA_NAME'];
+    	
+    		$query = $db->query("select indexable from const_areas where areaName = '$neighborhood'");
+    		$row = $db->row($query);
+    		if($row['indexable'] != 'Y') {
+    			$this->noindex = 1;
+    		}
+    	
+    		$this->title = "$neighborhood Condos, Lofts, Town Homes, Houses - ";
+    		$this->pagename = "Properties For Sale in $neighborhood, " . $priceTag;
+    		$this->description = "Properties For Sale in $neighborhood, $priceTag - Chicago, Illinois";
+    	}
+    	else if(isset($input->StreetNumber) && preg_match('/^\d+$/', $input->StreetNumber) && $this->totalRecords > 0) {
+    		$addr = '';
+    		foreach($this->results as $data) { // find the first usps-valid address
+    			if($data['building_id'] > 0) {
+    				$query = $db->query("select address as std_address from geo_buildings where building_id = " . $data['building_id']);
+    				$row = $db->row($query);
+    				$addr = $row['std_address'];
+    				break;
+    			}
+    		}
+    		if($addr == '') {
+    			die(json_encode($this));
+    			$addr = $this->results[0]['HSN_ADRESS_HOUSE_NUMBER'] . ' ' . $this->results[0]['CP_ADDRESS_COMPASS_POINT'] . ' ' .$this->results[0]['STR_ADDRESS_STREET'];
+    		}
+    		$this->pagename = "Search Results: $addr, " . $priceTag;
+    		$this->title = "$addr - " . $priceTag . " - ";
+    		$this->description = "$addr, Chicago, Illinois. Real Estate For Sale Search Results. List includes all units (for sale by broker, current listings only) at this Condominium Building or Townhouse Complex located at $addr. Brought to you by Chicago Top Condos";
+    	}
+    	else if(isset($input->StreetNumber) && preg_match('/^(\d+)\-(\d+)$/', $input->StreetNumber, $match) && $this->totalRecords > 0) {
+    		$addr = $this->results[0]['STR_ADDRESS_STREET'] . ", Address Range $match[1] to $match[2]";
+    		$this->pagename = "Search Results: $addr, " . $priceTag;
+    		$this->title = "$addr - " . $priceTag . " - ";
+    		$this->description = "$addr, Chicago, Illinois. Real Estate For Sale Search Results. List includes all units (for sale by broker, current listings only) at this Condominium Building or Townhouse Complex located at $addr. Brought to you by Chicago Top Condos";
+    	}
+    	else if(isset($input->Neighborhood) && sizeof($input->Neighborhood) == 1 && sizeof($this->results)>0) {
+    		$areas = $input->Neighborhood;
+    		$area = $areas[0];
+    		$this->pagename = "Search Results: $area Area, " . $priceTag;
+    		$this->title = "$area - " . $priceTag . " - ";
+    		$this->description = "$area, Chicago, Illinois. Real Estate For Sale Search Results. List includes all units (for sale by broker, current listings only) at this Condominium Building or Townhouse Complex located at $area. Brought to you by Chicago Top Condos";
+    	}
+    	else {
+    		$this->title = "Search Results.";
+    		$this->pagename = "Search Results.";
+    		$this->description = "Search Results.";
+    	}
+    }
+    
+}
+?>

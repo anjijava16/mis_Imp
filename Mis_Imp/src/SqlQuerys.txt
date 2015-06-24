@@ -1,0 +1,7 @@
+Query:HOW CAN I CHECK HOW MANY TIMES A CHARACTER EXISTS IN A STRING ? 
+EX: 123,123,123,123,123 
+I WANT TO CHECK HOW MANY TIMES "," EXISTS ON THAT STRING
+
+Ans:select regexp_count('123,123,123,123,123',',') from dual;
+
+Select length('123,123,123,123')-length(replace('123,123,123,123',',','')) from dual

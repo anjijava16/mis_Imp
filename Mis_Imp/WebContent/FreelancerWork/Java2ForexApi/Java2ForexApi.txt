@@ -1,0 +1,23 @@
+Project Description:
+
+We need to create a Java API to be like a communication centre between 2 different Servers ( forex server and our private software server ), we have a sample java app provided by Forex company, we have a full tutorials and documentations on how to do it.
+please read details and understand it:
+- you will do all development and deployment work.
+- installing apache tomcat on linux
+- installing sample app and work on it to understand the project process
+- building our api with 2 primary process : 
+1- reading remote xml and execute orders to fix api
+2- receiving response from fix api and create xml locally
+- create cron jobs for the 2 primary process
+- testing api on sandbox and fixing bugs or issues
+- finish the project and enhance Java api
+
+please note the following:
+- we will provide a linux box.
+- there is NO direct access to this API, NO public access, NO user interface
+- you will do all development and deployment work
+- project total time 7 days, we think its more than enough
+- our budget $300 
+
+if you have any question, please ask.
+Skills required:

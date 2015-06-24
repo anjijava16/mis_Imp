@@ -1,0 +1,24 @@
+When you are using Spring tags (i.e <form:input>) tags then you can not use name attribute in spring tags.If you want name attribute then you have to use path attribute of tag which internally convert its value to name attribute of an HTML tag as follows :
+
+<c:forEach var="trackRecord"  varStatus = "number" items="${contractDetails.trackRecordEntries}" >
+  <tr class="tafont">
+      <td class="varcar"><form:input readonly = "true" path = "installmentNo" id = "installmentNo" /></td>
+      <td class="varcar"><form:input readonly = "true" path  = "installmentAmount" id = "installmentAmount" /></td>   
+      <td class="varcar"><form:input readonly = "true" path = "dueDate" id = "dueDate" /></td>
+      <td class="varcar"><form:input cssClass="recievedDate" path = "recievedDate" id = "recievedDate" /></td>
+      <td class="varcar"><form:input id = "recieptAmount" path = "recieptAmount" /></td>
+      <td class="varcar"><form:input id = "delayDays" path = "delayDays" /></td>     
+ </tr>
+ </c:forEach>
+and you have to define all this path variable into your form like follows:
+
+public class UoyrForm {
+
+    private String[] installmentNo;
+    private String[] installmentAmount;
+    private String[] dueDate;
+    private String[] recievedDate;
+    private String[] recieptAmount;
+    private String[] delayDays;
+}
+or you can use simple HTML tags to

@@ -1,0 +1,5 @@
+To answer "Why can't we get particular value from a set?", the answer would be: because the designers of the collection framework were not very forward looking. They didn't anticipate your very legitimate use case, naively tried to "model the mathematical set abstraction" (from the javadoc) and simply forgot to add the useful get() method.
+
+Now to the implied question "how do you get the element then": I think the best solution is to use a Map instead of a set, to map the elements to themselves. In that way, you can efficiently retrieve an element from the "set", because the get() method of the map will find the element using an efficient hash table or tree algorithm. If you wanted, you could write your own implementation of set that offers the additional get() method, encapsulating the map.
+
+otherwise you can use list ( all time best approach for your case).

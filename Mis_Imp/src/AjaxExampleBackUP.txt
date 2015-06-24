@@ -1,0 +1,138 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery.query-2.1.7.js"></script>
+
+<script>
+	var request;
+	function sendInfo() {
+		
+		var userName = document.getElementById("username").value;
+		var url = "customerDetails.action?username=" + userName;
+		if (window.XMLHttpRequest) {
+			request = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		try {
+			request.onreadystatechange = getInfo;
+			request.open("POST", url, true);
+			request.send();
+		} catch (e) {
+			alert("Unable to connect to server");
+		}
+	}
+
+	function getInfo() {
+		if (request.readyState == 4) {
+			if(request.responseText=="User not found"){
+				document.getElementById("welcometext").innerHTML = request.responseText;	
+			}
+			document.getElementById("welcometext").innerHTML = request.responseText;
+			//document.getElementById('amit').innerHTML = val;
+		}
+	}
+</script>
+<script>
+	$(document).ready(
+			function() {
+				$("#username").focus();
+				$("#loginSub").click(
+						function() {
+							if ($.trim($("#username").val()) == '') {
+								alert("UserName is can't be empty ");
+								return false;
+							}
+							if ($.trim($("#userID").val()) == '') {
+								alert("Password is Not Empty");
+								return false;
+							}
+							/* console.log($("#password").val().length)
+							if ($("#password").val().length >= 6) {
+								alert("Please Enter Above 6 Chaaracters");
+								return false;
+							} */
+							if ($("#userID").val() == 'NULL'
+									|| $("#userID").val() == 'null') {
+								alert("Password Can't be Null or null");
+								// alert($(this).val());
+								$("#userID").focus();
+								return false;
+							}
+						});
+			});
+</script>
+
+<body>
+	<h2>Home Page</h2>
+   
+   <form action="updateCustomerDetails.action" name="customerForm" >
+   
+	<table>
+		<tr>
+			<td>USER_NAME</td>
+			<td><input type="text" name="username" id="username"	maxlength="100" onchange="sendInfo()"/></td><td><div id="welcometext"/></td>
+		</tr>
+		<tr>
+			<td>USER_ID</td>
+			<td><input type="password" name="userID" id="userID"		maxlength="16" /></td>
+		</tr>
+		<tr>
+			<td>USER_SAL</td>
+			<td><input type="text" name="userSal" id="welcometext"			maxlength="100" /></td>
+		</tr>
+		<tr>
+			<td>USER_COMMENTS</td>
+			<td><input type="password" name="userComments" id="welcometext"  /></td>
+		</tr>
+
+		<tr>
+			<td>USER_ADDRESS</td>
+			<td><input type="text" name="username" id="welcometext" 	maxlength="100" /></td>
+		</tr>
+		<tr>
+			<td>USER_JOIN_DATE</td>
+			<td><input type="password" name="password" id="welcometext"
+				maxlength="16" /></td>
+		</tr>
+
+		<tr>
+			<td>USER_JOIN_TIME</td>
+			<td><input type="text" name="username" id="username"
+				maxlength="100" /></td>
+		</tr>
+		<tr>
+			<td>USER_PROJECT</td>
+			<td><input type="password" name="password" id="password"
+				maxlength="16" /></td>
+		</tr>
+
+
+		<tr>
+			<td>USER_EMAIL</td>
+			<td><input type="password" name="password" id="password"
+				maxlength="16" /></td>
+		</tr>
+
+		<tr>
+			<td>USER_PHONE</td>
+			<td><input type="text" name="username" id="username"
+				maxlength="100" /></td>
+		</tr>
+
+	</table>
+	<input type="submit" name="loginUser" id="loginSub" value="LOGIN" />&nbsp;&nbsp;
+	<input type="submit" name="resetLogin" id="cancelID" value="Reset" />&nbsp;&nbsp;
+
+</form>
+</body>
+</html>

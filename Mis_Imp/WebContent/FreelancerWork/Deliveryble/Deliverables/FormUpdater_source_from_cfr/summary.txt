@@ -1,0 +1,2 @@
+Summary for /www/javadecompilers/app/public/data/23.06.15/7904472c35c828f8dc4fba620f717b28/FormUpdater.jar
+Decompiled with CFR 0_101

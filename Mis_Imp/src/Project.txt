@@ -1,0 +1,42 @@
+I am trying 6 Years exp e devloper :
+Development Framework :: Deve Loper easily 
+
+One Quba platofrm rapid dev
+
+ERP application .
+
+https://www.cuba-platform.com/en/tutorials
+http://www.coderanch.com/forums/forums/show/240/4
+
+1. Accounting (Accout,tranaxion,reporting) (Modularlity)
+2. sales
+3. perchase.
+ high security
+ tranasction
+ concurrnecy
+ https://developer.jboss.org/thread/241832
+ http://www.coderanch.com/forums/user/edit/286121 (Anjaiah)
+
+ https://developer.jboss.org/thread/241832 (Salams)
+
+ Critial Finance 
+ i) audit feature. Customer table when large product application merge(),instead update()
+   Customer(Main Table),CustomeA(Child Table)
+   https://www.ebooks-it.net/ebook/java-ee-7-essentials
+ii)adam bien java ee
+iii) http://sourceforge.net/projects/optinfraenterpirseplatform/?source=directory
+iv) 1. maven
+1. maven
+  2. shiro
+3. jsf , primeface, ejb
+5) jpa
+4. cdi ,
+5. jboss wildlfy
+6. Active MQ
+
+(Accout,tranaxion,reporting) (Modularlity)
+Resulabilyt remove dupliates
+Extensible : like function report pdf generation another report creation files ext
+Framework structus :framework sttuts semi infrastured
+ based on modular components. (Java is modular)
+ Profile Management Scheduling Batched Tasks Resource Management Replication 

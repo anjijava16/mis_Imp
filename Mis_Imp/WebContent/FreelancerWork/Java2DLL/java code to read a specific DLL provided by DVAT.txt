@@ -1,0 +1,9 @@
+Project Description:
+
+I have a DLL which is provided by DVAT. I need a java code that can read the DLL and call the functions that are present in the DLL.
+
+To be specific, you need to write a java code to load the dll and call the functions that are present in DLL. The program should have calling to all the DLL functions, not just one.
+
+I am attaching the DLL and a pdf file that is reference to the DLL. PDF file has all the functions names and parameters that are present in DLL. You can have more details from the DVAT website about the DLL.
+
+Message me if you need more details.

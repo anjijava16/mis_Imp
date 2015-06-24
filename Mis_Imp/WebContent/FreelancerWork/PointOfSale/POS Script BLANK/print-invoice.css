@@ -1,0 +1,28 @@
+body { margin: 0; padding: 0; border: 0; font-size: 11pt; font-family: arial; width: 21cm; }
+a { color: #000; font-style: italic; }
+#header { margin: 0.8cm 1cm 0; padding: 0; border: 0; border-collapse: collapse; width: 19cm; font-size: 11pt; font-family: arial;}
+table, table td { border-collapse: collapse;font-size: 11pt; font-family: arial;}
+#header td.logo { margin: 0; padding: 0; border: 0; width: 5.8cm; position: relative;font-size: 11pt; font-family: arial; }
+#header td.logo .logo_img { width: 5.3 cm; position: absolute; top: 0.2cm; font-size: 11pt; font-family: arial;}
+#invoice_info { width: 4.4cm; font-size: 11pt; font-family: arial;}
+#invoice_info td { width: 2.2cm; text-align: right; font-size: 11pt; font-family: arial;}
+#header h1 { line-height: 1cm; font-size: 20pt; text-align: right; height: 1cm; margin:0; padding: 0; font-family: arial; }
+.addresses-wrap {margin: 0 1cm;padding: 0; width: 19cm;}
+.addresses {float:left; margin:0; padding: 0}
+.whom {width: 9.50cm; background: rgb(230, 230, 230); margin: 0.8cm 0 0.5cm; font-style: italic;}
+.address {width: 7.0cm; background: transparent; margin: 0 0 1.8cm 75px; font-size: 11pt;}
+.clear { clear: both;}
+/*.whom {width: 19cm; background: rgb(230, 230, 230); margin: 1.3cm 1cm 0.5cm; font-style: italic;}
+.address {width: 19cm; background: transparent; margin: 0 1cm 1.8cm; font-size: 11pt;}*/
+#items {margin: 0 1cm 0;}
+#items, #items th, #items td {font-size: 11pt}
+#items th {border: 0.04cm solid rgb(200, 200, 200); padding:0.1cm; height: 0.53cm;}
+#items td {border-left: 0.04cm solid rgb(200, 200, 200); border-right: 0.04cm solid rgb(200, 200, 200); padding:0.1cm; height: 0.53cm;}
+#items tr.last td, #items td.stotal {border-bottom: 0.04cm solid rgb(200, 200, 200);}
+#items .qty {width:2.1cm; text-align: right;}
+#items .product_code {width: 3.5cm; text-align: left;}
+#items .product_name {width: 7.5cm; text-align: left;}
+#items .price {width: 2.55cm; text-align: center;}
+#items .total {width:3.2cm; text-align: center;}
+#items .no_border {border: 0}
+#thanks {text-align: center; margin: 0.6cm 0 0; font-size: 11pt}

@@ -1,0 +1,26 @@
+
+
+Example http://localhost:2626/JerseyEx1/rest/hello/anji
+
+
+@Path("/hello")
+public class HelloWorldService{
+
+@GET
+@Path("/{param}")
+public Response getMsg(@PathParam("param")String msg){
+String output="Good Morning"+msg
+return Reponse.status(200).entity(output).build();
+}
+
+}
+
+Example 2 :  http://localhost:2626/JerseyEx1/rest/helloworld
+@Path("/helloworld")
+public class HelloWorldResource {
+@GET
+@Produces("text/plain")
+public String getChlidMessage(){
+return "anji";
+}
+}

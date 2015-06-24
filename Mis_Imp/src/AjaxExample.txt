@@ -1,0 +1,38 @@
+<?php
+if(isset($_POST['name'],$_POST['email'],$_POST[''])){
+print($_POST)
+}
+>
+
+
+<form action="" class="ajax">
+
+</form>
+
+
+$('form.ajax').on('submit',function(){
+console.log("");
+var that=$(this),
+url=that.attr('action'),
+type=that.attr('method'),
+data={};
+that.find(['name']).each(function(index,value){
+console.log(value);
+name=that.attr('name');
+value=that.val();
+data[name]=value;
+
+});
+console.log(data);
+
+$.ajax({
+ url:url,
+ type:type
+ data:data;
+ success:function(response){
+    console.log(response)
+}});
+return false;
+
+
+});

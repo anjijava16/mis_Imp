@@ -1,0 +1,34 @@
+Project Description:
+
+We make our calls as follows:
+
+java –jar FormUpdater.jar [form] [pdf]
+
+For example:
+
+c:\oinsight\bitwin>java -jar FormUpdater.jar FL-App-for-Certificate-of-Title-82040 filled
+
+form = the file being updated/filled with data.
+pdf = the new/updated form presented to the user.
+FormUpdater.jar assumes:
+- A directory named forms exists one level down from FormUpdater.jar.
+- A .properties file exists in the forms directory that matches form.
+- Every .properties file contains an XMLFile value on line 1, usually 2009063.xml
+- form exists in the forms directory.
+
+FormUpdater.jar reads values from 2009063.xml and based on the properties defined in the .properties file inserts the values into the pdf file. Each pdf has fields defined within that matches the .properties file. Another program creates 2009063.xml and the .properties file and writes them to the forms directory.
+
+Here is what we need done:
+1.	Add a third argument to FormUpdater.jar that is the path and filename of the xml file, currently 2009063.xml. FormUpdater.jar should use this path and filename instead of the XMLFile value on line 1 of the .properties file.
+2.	Return a response when the process is complete. If successful return Success else return Failure^reason(s) why.
+3.	Allow us to define where the forms directory is located, either as an argument passed at runtime or in some type of configuration file that is read at runtime - once this path is set it likely will not change.
+
+The attached contains everything you need to create a working example. Let me know if you need help setting it up or if you have any questions regarding the above. Thanks.
+Skills required:
+Java
+Additional Files: Deliverables.zip
+About the employer:
+ (7 Reviews) United States
+ VERIFIED    
+ 
+Project ID: 7912144

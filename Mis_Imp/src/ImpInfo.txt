@@ -1,0 +1,79 @@
+yajsw-beta-12.01 (Java Thread checking) info from santhu.
+
+http://dataweave.in/apis (india Free API)
+
+jvisualvm.exe
+C:\Program Files\Java\jdk1.6.0_33\bin\jvisualvm.exe
+
+https://github.com/Puja0708?tab=repositories
+
+http://javacolors.blogspot.com/2013/05/a-good-presentation-about-spring.html (spring Security)
+
+
+/// Spotify URL connection info  /////////////
+
+Spotify Dev forum URL : https://developer.spotify.com/web-api/code-examples/
+Spotify IDs anjaiahspr
+OAuth Token
+Spotify Application Name : anjaiahsprspotifysongs	
+BQBqmAD3UpWcloeVV1ll-yezJF-cZ64coluuQAeG1cnYgdvIXPpYnc7r4Wkd0HrsULnEDz7PJa2o_O7LotJMFnJNfvu_6hHebVUpFqPeD-MQGjsiQVPvmIpyXdDaEbc9AzGh5KLdKMI
+
+Client ID
+2e0ea6825de74911a673478f3fdca47d
+
+Client Secret
+70867861557a45cfa4a4e420e047bbc0
+
+
+Website https://github.com/anjijava16
+
+// Jesery URL 
+https://developer.atlassian.com/jiradev/api-reference/jira-rest-apis
+http://www.thebuzzmedia.com/designing-a-secure-rest-api-without-oauth-authentication/
+https://jersey.java.net/documentation/latest/jaxrs-resources.html
+
+
+
+// Erail Account INfo
+534231406
+def self.pnr_status2
+12			RestClient.get "http://api.erail.in/pnr?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&pnr=testtt"
+13		end
+14	
+15		def self.pnr_status(pnr_no)
+16			RestClient.get "http://api.erail.in/pnr?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&pnr=#{pnr_no}"
+
+http://api.erail.in/pnr?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&pnr=testtt
+
+
+http://api.erail.in/route/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=12138
+
+http://api.erail.in/cancelled/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&date=TD
+
+http://api.erail.in/rakes/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=22905
+
+http://api.erail.in/live/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=12138&stnfrom=NDLS&date=10-JUN-2015
+
+http://api.erail.in/trainsatstation/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&stnfrom=NDLS&stnto=BCT&hr=10
+
+http://api.erail.in/rakes/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=12138
+
+http://api.erail.in/fare/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=17035&stnfrom=SC&stnto=PDPL&age=SM&quota=GN&class=SL&date=15-JUL-2015	
+&trainno=12138&stnfrom=NDLS&stnto=CSTM&age=AD&quota=GN&date=05-SEP-2014
+http://api.erail.in/fare/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=12138&stnfrom=NDLS&stnto=CSTM&age=AD&quota=GN&date=05-SEP-2015
+
+http://api.erail.in/fare/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=12138&stnfrom=NDLS&stnto=CSTM&age=AD&quota=GN&class=1A&date=05-AUG-2015
+
+
+http://www.railwayapi.com/pricing/
+http://www.mudah.my/Malaysia/java%20developer-for-sale
+https://developer.foursquare.com/docs/explore#req=venues/40a55d80f964a52020f31ee3
+
+
+https://developer.atlassian.com/jiradev/api-reference/jira-rest-apis/jira-rest-api-tutorials
+
+
+
+Error occured. ERR_MESSAGE=Fail to track P2P info. [ART.117.4002] Adapter Runtime (Adapter Service): Unable to invoke adapter service maxis.eai.system.intdb.atomic.intdb_vas_conn:cselLatestServiceStatus. [ADA.1.316] Cannot execute the SQL statement "SELECT TO_CHAR(active_dt, 'YYYYMMDDHH24MISS'), status_type_id, status_id, status_reason_id, chg_who, TO_CHAR(inactive_dt, 'YYYYMMDDHH24MISS') FROM cmss_curr_srv_status WHERE subscr_no = ? AND subscr_no_resets = ?". " (42000/942) ORA-00942: table or view does not exist " ORA-00942: table or view does not exist`
+
+https://github.com/aadityabagga/timeset/blob/master/bin/timeset.sh (More scripts files)

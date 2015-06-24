@@ -1,0 +1,199 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class TestScrollableResultSet {
+
+	public static void main(String[] args) {
+
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		
+		try {
+			// load the driver class.
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			// establish the connection.
+			con = DriverManager.getConnection(
+					"jdbc:oracle:thin:@localhost:1521:XE", "hr", "kiran");
+			
+			// creating a statement with Scrollable ResultSet
+			st = con.createStatement( ResultSet.TYPE_SCROLL_SENSITIVE , ResultSet.CONCUR_UPDATABLE );
+			
+			// executing a query
+			rs = st.executeQuery("select id, name from student1");
+			
+//---------------------------- Working on ResultSet --------------------------------------------------------------------------------
+			
+			// Test_1 : Checking for ResultSet Cursor isBeforeFirst
+			
+			System.out.println("ResultSet Cursor is at before first: " + rs.isBeforeFirst());
+			
+			System.out.println("Printing the ResultSet in Forward direction TOP to BOTTOM ");
+			while (rs.next()) {
+				System.out.println(rs.getInt(1) + "   " + rs.getString(2));
+			}
+
+//----------------------------------------------------------------------------------------------------------------------------------		
+			
+			// Test_2 : moving cursor to particular row.
+			//rs.absolute(4) : moves cursor to the given row number  with respect to the beginning of the result set.
+			rs.absolute(4);
+			System.out.println("Cursor moved to fourth row (rs.absolute(4)) : " + rs.absolute(4) ); 
+			
+//----------------------------------------------------------------------------------------------------------------------------------																					  
+			
+			// Test_3 : Checking the position of the cursor i,e "isAfterLast"
+			
+			//isAfterLast() : Retrieves whether the cursor is after the last row in this ResultSet object.
+			
+			System.out.println("isAfterLast : " + rs.isAfterLast() );  //false
+			
+//----------------------------------------------------------------------------------------------------------------------------------			
+			
+			//Test_4 : Checking the position of the cursor i,e "isBeforeFirst"
+			
+			//isBeforeFirst() : Retrieves whether the cursor is before the first row in this ResultSet object.
+			
+			System.out.println("isBeforeFirst : " + rs.isBeforeFirst() ); //false
+			
+//---------------------------------------------------------------------------------------------------------------------------------			
+			
+			// Test_5 : Updating a row in a ResultSet using updateString() method
+			
+			//Note : rs.updateString( ) will not update the DataBase, it updates the row only in the ResultSet(rs) Object
+			
+			rs.updateString(2, "sssssss"); // Updates the designated column with a String value
+			
+			System.out.println("FOURTH ROW OF THE ResultSet is UPDATED BECAUSE 'rs' CURSOR HAS MOVED TO FOURTH ROW ");
+			
+//----------------------------------------------------------------------------------------------------------------------------------			
+		
+ /*
+	Test_6 : updateRow() 
+ 	updates the row in ResultSet and also changes are reflected in the Database which means that it also updates the row in the DataBase
+		
+	rs.updateRow(); this will lock the session and will not allow to update database manually and following error occurs in ORACLE SQL developer			 
+	
+	ERROR :	UPDATE "HR"."STUDENT1" SET NAME = 'kkkkkk' WHERE ROWID = 'AAAE6AAAEAAAAGFAAB' AND ORA_ROWSCN = '1399262'
+			One error saving changes to table "HR"."STUDENT1":
+			Row 4: Data got committed in another/same session, cannot update row.
+ */
+																		
+//----------------------------------------------------------------------------------------------------------------------------------			
+			
+			System.out.println("Reading the inserted row from the ResultSET (not from database) to which rs is pointing i,e fourth row");
+			
+			// In the below statement parameters (1 and 2 ) represents First and Second Column 
+			System.out.println(rs.getInt(1) + "   " + rs.getString(2)); 
+			
+//-----------------------------------------------------------------------------------------------------------------------------------			
+			
+			// Test_7 : Before the execution of while, the resultset cursor is pointing to fourth row
+			//	        After the execution of while, the resultset cursor points after the last row
+			
+			System.out.println("Is After Last: " + rs.isAfterLast()); // false
+			
+			System.out.println("Printing ResultSet contents after fourth row till last row");
+			
+			while (rs.next()) {
+				System.out.println(rs.getInt(1) + "   " + rs.getString(2));
+			}
+			
+			System.out.println("Is After Last: " + rs.isAfterLast()); // true
+//-----------------------------------------------------------------------------------------------------------------------------------
+			
+			// Test_8 : SLEEP FOR 60 SECONDS
+			System.out.println("application is sleeping for 60 secs .. do changes in database with in the 60 secs");
+			
+			Thread.currentThread().sleep(60000);
+			
+			System.out.println(" THREAD : Sorry i am not allowed to sleep for more than 60 secs ");
+//-----------------------------------------------------------------------------------------------------------------------------------
+			
+			System.out.println("Printing the ResultSet in reverse direction from BOTTOM to TOP ");
+			
+			System.out.println("refreshRow() : JDBC driver fetch the latest value of a row from the database i,e changes made in the database are read");
+			
+			while (rs.previous()) {
+				
+				//Refreshes the current row with its most recent value in the database
+				// i,e the JDBC driver fetch the latest value of a row from the database
+				rs.refreshRow(); 
+				System.out.println(rs.getInt(1) + "   " + rs.getString(2));
+			}
+		
+		}//end of try
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+   }//end of main
+}//end of class
+
+
+/*
+ 							OUTPUT
+------------------------------------------------------------------------------ 
+ResultSet Cursor is at before first: true
+
+Printing the ResultSet in Forward direction TOP to BOTTOM 
+8   SMITH
+9   ROCK
+1   kiran
+2   joe
+3   sachin
+4   kirankumar
+5   diana
+6   Ram
+7   Ram
+
+Cursor moved to fourth row (rs.absolute(4)) : true
+
+isAfterLast : false
+
+isBeforeFirst : false
+
+FOURTH ROW OF THE ResultSet is UPDATED BECAUSE 'rs' CURSOR HAS MOVED TO FOURTH ROW 
+
+Reading the inserted row from the ResultSET (not from database) to which rs is pointing i,e fourth row
+2   sssssss
+
+Is After Last: false
+
+Printing ResultSet contents after fourth row till last row
+3   sachin
+4   kirankumar
+5   diana
+6   Ram
+7   Ram
+
+Is After Last: true
+
+application is sleeping for 60 secs .. do changes in database with in the 60 secs
+
+THREAD : Sorry i am not allowed to sleep for more than 60 secs 
+
+Printing the ResultSet in reverse direction from BOTTOM to TOP 
+refreshRow() : JDBC driver fetch the latest value of a row from the database i,e changes made in the database are read
+7   Ram
+6   bharati ** Observe: this row is changed by me manually in the database during Thread Sleep and this change is displayed bcs of refreshRow()
+5   diana
+4   kirankumar
+3   sachin
+2   joe
+1   kiran
+9   ROCK
+8   SMITH
+
+*/

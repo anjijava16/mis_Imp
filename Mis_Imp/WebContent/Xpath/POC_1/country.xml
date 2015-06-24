@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-styleshee href="country.xsl" type="text/xsl" ?>
+<catalog>
+	<cd>
+		<title>Empire Burlesque</title>
+		<artist>Bob Dylan</artist>
+		<country>USA</country>
+		<company>Columbia</company>
+		<price>10.90</price>
+		<year>1985</year>
+	</cd>
+	<cd>
+		<title>Bridge of Spies</title>
+		<artist>T`Pau</artist>
+		<country>UK</country>
+		<company>Siren</company>
+		<price>7.90</price>
+		<year>1987</year>
+	</cd>
+	<cd>
+		<title>Private Dancer</title>
+		<artist>Tina Turner</artist>
+		<country>UK</country>
+		<company>Capitol</company>
+		<price>8.90</price>
+		<year>1983</year>
+	</cd>
+	<cd>
+		<title>Red</title>
+		<artist>The Communards</artist>
+		<country>UK</country>
+		<company>London</company>
+		<price>7.80</price>
+		<year>1987</year>
+	</cd>
+	<cd>
+		<title>Unchain my heart</title>
+		<artist>Joe Cocker</artist>
+		<country>USA</country>
+		<company>EMI</company>
+		<price>8.20</price>
+		<year>1987</year>
+	</cd>
+</catalog>
+

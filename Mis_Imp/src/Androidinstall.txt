@@ -1,0 +1,3 @@
+http://developer.android.com/sdk/installing/index.html?pkg=studio
+C:\Users\vl\AppData\Local\Android\sdk (3.5GB)
+C:\Program Files\Android\Android Studio(500MB)

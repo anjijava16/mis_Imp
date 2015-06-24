@@ -1,0 +1,75 @@
+Synatax: <c:if test="${accessFail}">
+</c:if>
+Ex:
+ <c:if test="${accessFail}">
+        <div class="alert alert-warning" role="alert">
+            You have NO access to requested page!
+        </div>
+    </c:if>
+<<<<=======================================================================>>>>>
+Synatax: <c:forEach var="userRole" items="<%=%>">
+
+Ex :1  <c:forEach items="${wallets}" var="wallet">
+
+     </c:forEach>
+Ex :2
+ <c:forEach var="sex" items="<%= Sex.values() %>">
+                        <option value="<c:out value="${sex}"/>"><c:out value="${sex}"/></option>
+                    </c:forEach>
+
+<c:forEach items="${clients}" var="client">
+<c:out value="${client.id}">
+<c:out value="${client.name}">
+<c:out value="${client.address}">
+</c:forEach>
+
+<<<<<======================================================================>>>>>>
+EX: <c:out value="${id}"/>
+	<c:out value="${sId}"/>
+	<input type="text" class="form-control" name="inputLogin" value="<c:out value="${inputLogin}"/>"/>
+	
+             <p><strong>Login: </strong><c:out value="${userES.login}"/></p>
+	         <a href="/clients?=<c:out value="${userES.client.id}"/>">Go to Account</a>
+
+<a href="/clients?=<c:out value="${userEs.client.id}"/>"Go To Account</a>
+<a href="/permission?id=<c:out value="${permission.id}"/>"><c:out value="${permission.id}"/>
+      
+
+
+<<<<========================================================================>>>>>
+ <c:choose>
+        <c:when test="${clientDeleted}">
+            <div class="alert alert-success" role="alert">Client deleted successfully!</div>
+        </c:when>
+        <c:otherwise>
+            <div class="alert alert-warning" role="alert">Incorrect delete request!</div>
+        </c:otherwise>
+    </c:choose>
+<<<<<=======================================================================>>>>>>>
+<c:if test="${fn:length(walletTypes) gt 0}">
+      <c:forEach items="${walletTypes}" var="walletType">
+           <option value="<c:out value="${walletType.id}"/>"><c:out value="${walletType.typeName}"/></option>
+        </c:forEach>
+ </c:if>
+ =========================>>><<<=================
+                     <c:if test="${fn:length(currencies) gt 0}">
+                        <c:forEach items="${currencies}" var="currency">
+                            <option value="<c:out value="${currency.id}"/>"><c:out value="${currency.currency}"/></option>
+                        </c:forEach>
+                    </c:if>
+=================================================================
+    <c:choose>
+        
+	<c:when test="${wallet ne null}">
+                <div class="form-group hidden">
+                    <input type="text" class="form-control" name="wallet_id"
+                           value="<c:out value="${wallet.id}"/>">
+                </div>
+        </c:when>
+
+	<c:otherwise>
+            <div class="alert alert-warning" role="alert">No such wallet!</div>
+        </c:otherwise>
+
+    </c:choose>
+
