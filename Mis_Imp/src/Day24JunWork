@@ -1,3 +1,61 @@
 HI Jun24 th Work::
 ==============================
 URL : https://code.google.com/p/json-simple/wiki/EncodingExamples (JSON Object)
+public Map<String, List<JsonObject>> getGradingFormByProfID(String profID) {
+		// Key(lecture name), Value(row)
+		final Map<String, List<JsonObject>> result = new HashMap<String, List<JsonObject>>();
+		try {
+			List<JsonObject> rows = jt.query(
+					"select u.name as student_name, l.name as lecture_name, g.grade as grade,"
+					+" u.ID as student_id, l.ID as lecture_id"
+					+" from sogongdb.user u"
+					+" join sogongdb.lecture_grade g on u.ID = g.student_ID"
+					+" join sogongdb.lecture l on g.lecture_ID = l.ID"
+					+" where l.prof_id = ?",
+					new Object[]{profID}, new RowMapper<JsonObject>() {
+				public JsonObject mapRow(ResultSet rs, int rowCount) throws SQLException {
+					JsonObject row = new JsonObject();
+					ResultSetMetaData columnInfo = rs.getMetaData();
+					for (int i = 1 ; i <= columnInfo.getColumnCount(); ++i) {
+						row.addProperty(columnInfo.getColumnLabel(i), rs.getString(i));
+					}
+					return row;
+				}
+			});
+
+			for (JsonObject e : rows) {
+				createKeyIfNeed(result, e);
+				result.get(e.get(LECTURE_ID).getAsString()).add(e);
+			}
+		} catch (Exception e) {e.printStackTrace();}
+		return result;
+	}
+
+	private void createKeyIfNeed(final Map<String, List<JsonObject>> result, JsonObject e) {
+		if (result.get(e.get(LECTURE_ID).getAsString()) == null)
+			result.put(e.get(LECTURE_ID).getAsString(), new ArrayList<JsonObject>());
+	}
+=========================================
+In Controller Layer :::----
+@RequestMapping(value="LectureController/confirm_grade", method=RequestMethod.GET)
+	public ModelAndView confirm_grade(HttpSession session){
+		ModelAndView mv = new ModelAndView("confirm_grade");
+		mv.addObject("confirm", lecGrade.getGradeById((String)session.getAttribute("id")));
+		return mv;
+// Here returning the List<JsonObject>
+	}
+
+In JSP ::--->>>>
+<%List<JsonObject> confirm = (List<JsonObject>) request.getAttribute("confirm"); %>
+                        <%for (JsonObject e : confirm){ %>
+                        <tr style="display: table-row;">                             
+                            <td><%=e.get("lecture_id").getAsInt()%></td>                             
+                            <td><%=e.get("lecture_name").getAsString()%></td>                             
+                            <td><%=e.get("prof_name").getAsString() %></td>
+                            <td><%=e.get("year").getAsInt() %></td>
+                            <td><%=e.get("school_year").getAsString() %></td>
+                            <td><%=e.get("credit").getAsInt() %></td>
+                            <td><%=e.get("stu_num").getAsInt() %></td>
+                            <td><%=e.get("grade").getAsString() %></td>                             
+                        </tr>
+                        <%}%>
