@@ -1,0 +1,146 @@
+Main application URL: http://localhost:2020/JerseyEx1/
+Web.xml URL Pattern :/rest
+@Path to CustomerService : /customers
+Total URL should be :: http://localhost:2020/JerseyEx1/rest/customers
+
+######################################################################################################
+With OUT using Path annotations at Method level::   http://localhost:2020/JerseyEx1/rest/customers
+MethodLevel For NRI Customer URL  :http://localhost:2020/JerseyEx1/rest/customers/nri
+MethodLevel  For LOCAL Customer URL  :http://localhost:2020/JerseyEx1/rest/customers/local
+
+#############################################################################################################
+
+@PathParam Ex:
+URL : http://localhost:2020/JerseyEx1/rest/localCust/Java4s/USA?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94
+
+http://localhost:2020/JerseyEx1/rest/customersSe/local?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94
+
+
+Security Key :
+
+URL :http://localhost:2020/JerseyEx1/rest/localCust/Java4s/USA?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94
+
+Example :  http://api.erail.in/route/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=17035
+
+In method Level
+@GET
+@Path("{anji}/{hyderabad}")
+@Produces("text/html")
+public Response getCustomerInfo(@PathParam("name")String name,@PathParam("country")String country){
+		String output="Name is :"+name+ ";country="+country;
+		return Response.status(200).entity(output).build();
+	}
+#######################################################################
+@QueryParam 
+
+http://localhost:2020/JerseyEx1/rest/queryParam?nameKey=java4s&countryKey=USA
+
+In method Level
+@GET
+@Produces("text/html")
+public Response getQueryParam(@QueryParam("nameKey")String name,@QueryParam("countryKey")String country){
+
+}
+#########################################################################################
+@MatrixParam (; Separated)
+http://localhost:2020/JerseyEx1/rest/matrixService;nameKey=Java4s;countryKey=USA
+@GET
+	@Produces("text/html")
+	public Response getMatrixResponse(@MatrixParam("nameKey")String name, @MatrixParam("countryKey")String country) {
+		String custInfo="Name key="+name+"country="+country;
+		return Response.status(200).entity(custInfo).build();
+
+	}
+
+##################################################################################################################33
+<form
+		action="/JerseyEx1/rest/addCustomersService/addCustomer"
+		method="post">
+@Path("addCustomersService")	 //Class Level	
+@Produces("text/html")
+public Response addCustoemrService(@FormParam("nameKey")String name,@FormParam("countryKey")String country){
+	String output = "<font face='verdana' size='2'>" +
+            "Web Service has added your Customer information with Name - <u>"+name+"</u>, Country - <u>"+country+"</u></font>";
+	return Response.status(200).entity(output).build();
+
+#######################################################################################################################################
+
+List values returns
+
+http://localhost:2020/JerseyEx1/rest/customersServiceRes/testList
+@GET
+	@Path("testList")
+	@XmlElement(name = "customer")
+	public List<Customer> getCustomers() {
+		List<Customer> customers = new ArrayList<Customer>();
+		customers.addAll(customerMap.values());
+		return customers;
+	}
+
+Output :
+  <?xml version="1.0" encoding="UTF-8" standalone="yes" ?> 
+- <customers>
+- <customer>
+  <address>Sheffield, UK</address> 
+  <id>0</id> 
+  <name>Harold Abernathy</name> 
+  </customer>
+  </customers>
+#############################################################################################################################################	
+
+JSON URL
+
+http://localhost:2020/JerseyEx1/rest/customersServiceRes/1
+	@GET
+	@Path("/{id}")
+	@Produces("application/json")
+	public String getCustomer(@PathParam("id") int cId) {
+		Customer customer = customerMap.get(cId);
+		return "{\"name\": \" " + customer.getName() + " \", \"address\": \""
+				+ customer.getAddress() + "\"}";
+	}
+
+Output ::
+{"name": " KL ", "address": "MY"}
+
+##################################################################################################################################################
+
+http://localhost:2020/spotifyService/rest/iwinnerService/json/999
+
+{"clientId":"100","entireLine":"NEw","methodId":"5","msisdn":"889999","opId":"1","processDate":"2015-06-08T15:20:13.357+08:00","processTime":"2015-06-08T15:20:13.357+08:00","returnMessage":"SUccess","spotifyID":"0"}
+###########################################################################################
+XML
+http://localhost:2020/spotifyService/rest/iwinnerService/999
+<ndmnsDTO>
+<clientId>100</clientId>
+<entireLine>NEw</entireLine>
+<methodId>5</methodId>
+<msisdn>889999</msisdn>
+<opId>1</opId>
+<processDate>2015-06-08T15:18:49.494+08:00</processDate>
+<processTime>2015-06-08T15:18:49.494+08:00</processTime>
+<returnMessage>SUccess</returnMessage>
+<spotifyID>0</spotifyID>
+</ndmnsDTO>
+
+============================================================================
+http://api.erail.in/trains/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&stnfrom=SC&stnto=OEA&date=5-sep-2015&class=GN
+
+From Hyerabad(Secandrab) to Odela Trains
+
+{"status":"OK","result":
+[
+
+{"trainno":"17011","name":"HYB SKZR EXPRES","cls":"GN","rundays":"Daily","from":"SC","fromname":"Secunderabad Jn","dep":"05.20","to":"OEA","toname":"Odela","arr":"08.04","pantry":0,"type":"MAIL_EXPRESS","datefrom":"13-Jun-2015","dateto":"13-Jun-2020","traveltime":"02.44"},
+
+{"trainno":"17035","name":"KAGHAZNAGAR EXP","cls":"CC,2S,GN","rundays":"Daily","from":"SC","fromname":"Secunderabad Jn","dep":"08.20","to":"OEA","toname":"Odela","arr":"11.24","pantry":0,"type":"MAIL_EXPRESS","datefrom":"13-Jun-2015","dateto":"13-Jun-2020","traveltime":"03.04"},
+
+{"trainno":"17233","name":"BHAGYANAGAR EXP","cls":"CC,GN","rundays":"Daily","from":"SC","fromname":"Secunderabad Jn","dep":"15.25","to":"OEA","toname":"Odela","arr":"18.29","pantry":0,"type":"COMPOSITE","datefrom":"13-Jun-2015","dateto":"13-Jun-2020","traveltime":"03.04"}
+
+]}
+
+Telagana Expresss Timings
+
+http://api.erail.in/route/?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94&trainno=17035
+
+{"status":"OK","result":{"trainno":"17035","name":"Telangana Exp","route":[{"cls":"CC 2S","stn":[{"code":"SC","name":"Secunderabad Jn","arr":"First","dep":"08.20","day":1,"remark":""},{"code":"BG","name":"Bhongir","arr":"08.59","dep":"09.00","day":1,"remark":""},{"code":"ALER","name":"Aler","arr":"09.19","dep":"09.20","day":1,"remark":""},{"code":"ZN","name":"Jangaon","arr":"09.29","dep":"09.30","day":1,"remark":""},{"code":"GNP","name":"Ghanapur","arr":"09.53","dep":"09.54","day":1,"remark":""},{"code":"KZJ","name":"Kazipet Jn","arr":"10.23","dep":"10.25","day":1,"remark":""},{"code":"JMKT","name":"Jamikunta","arr":"10.54","dep":"10.55","day":1,"remark":""},{"code":"OEA","name":"Odela","arr":"11.24","dep":"11.25","day":1,"remark":""},{"code":"PDPL","name":"Peddapalli","arr":"11.34","dep":"11.35","day":1,"remark":""},{"code":"RDM","name":"Ramagundam","arr":"11.42","dep":"11.43","day":1,"remark":""},{"code":"MCI","name":"Manchiryal","arr":"11.55","dep":"11.56","day":1,"remark":""},{"code":"RVKH","name":"Ravindrakhani","arr":"12.09","dep":"12.10","day":1,"remark":""},{"code":"BPA","name":"Belampalli","arr":"12.21","dep":"12.22","day":1,"remark":""},{"code":"SKZR","name":"Sirpur Kaghaznagar","arr":"13.45","dep":"Last","day":1,"remark":""}]}]}}
