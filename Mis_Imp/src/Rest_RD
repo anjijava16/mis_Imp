@@ -1,3 +1,10 @@
+
+
+Rest URL For FireFox Browser:::
+chrome://restclient/content/restclient.html
+chrome://restclient/content/restclient.html
+=========================================================================
+
 Main application URL: http://localhost:2020/JerseyEx1/
 Web.xml URL Pattern :/rest
 @Path to CustomerService : /customers
