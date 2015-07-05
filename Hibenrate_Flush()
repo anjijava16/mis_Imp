@@ -1,0 +1,25 @@
+//set the JDBC batch size (it is fine somewhere between 20-50)
+hibernate.jdbc.batch_size 30
+ 
+//disable second-lavel cache
+hibernate.cache.use_second_level_cache false
+ 
+//and now do your job like this
+Session S=SF.openSession(); //SF = SessionFactory object
+Transaction T=S.beginTransaction();
+    
+for (int i=0;i<200000;i++)
+{
+   record r=new record(...);
+   S.save(record);
+   if(i % 30==0)
+   {    
+      //30, same as the JDBC batch size
+      //flush a batch and release memory
+      session.flush(); // Line 1
+      session.clear();
+   }
+} 
+//clean  
+T.commit(); // Line 2
+S.close();
