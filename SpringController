@@ -1,0 +1,60 @@
+Q) How to call one controller to another controller ?
+	@RequestMapping(value="SignController/logOut", method = RequestMethod.GET)
+Ans:)	public String logOut(HttpSession session, HttpServletRequest request){
+		session.invalidate();
+		
+		return "redirect:/"; // Here calling to another Controller.
+	}
+
+Ans :)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		return "home";  // Here calling to home jsp 
+	}
+
+===========================================================================================###########
+	@RequestMapping(value="LectureController/grading", method=RequestMethod.GET)
+	public ModelAndView grading(HttpSession session) {
+		ModelAndView mv = new ModelAndView("grading");
+		mv.addObject("data", lecGrade.getGradingFormByProfID(session.getAttribute("id").toString()));
+		return mv;
+	}
+	
+	@RequestMapping(value="LectureController/setGrade", method=RequestMethod.POST)
+	public String setGrade(HttpSession session, HttpServletRequest request,
+			@RequestParam("lecture_id") String lectureId,
+			@RequestParam("student_id") String studentId,
+			@RequestParam("grade") String grade,
+			@RequestParam("session_id") String sessionId) {
+		// Prevent CSRF Attack
+		if (!session.getAttribute("id").equals(sessionId))
+			return "redirect:/";
+		
+		lecGrade.updateGrading(lectureId, studentId, grade);
+		
+		return "redirect:/LectureController/grading";
+	}
+
+==============================================================================================################
+	@RequestMapping(value="LectureController/enroll_class", method=RequestMethod.GET)
+    public ModelAndView enrollClass(HttpSession session){
+		ModelAndView mv = new ModelAndView("enroll_class");
+		mv.addObject("enroll", lec.getLecture());
+		return mv;
+	}
+	
+	@RequestMapping(value="LectureController/setLecture", method=RequestMethod.POST)
+	public String setLecture(HttpSession session,
+			@RequestParam("lecture_id") String lectureId){
+		String studentId = (String) session.getAttribute("id");
+		if(!lecGrade.setLecture(studentId, lectureId)){return "error";}
+		
+		return "redirect:/LectureController/enroll_class";
+	}
+
+=============================================================================================== ################
+include directive and include action is used to include 
+
+JSP ---> convert into Servlet
+Translation--->Complilation--->execution
+<%@ include file="loan.jsp"%>
