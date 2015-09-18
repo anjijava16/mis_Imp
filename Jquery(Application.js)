@@ -1,0 +1,535 @@
+
+
+function publishfile(objectId) {
+	
+	$.ajax({
+		type : "GET",
+		url : "../jsp/publishschedule.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function editfile(objectId) {
+	$.ajax({
+		type : "GET",
+		url : "../jsp/showschedulefile.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function getaccountslist() {
+	$("#ajaxLoading").show();
+	$.ajax({
+		type : "POST",
+		url : "../jsp/accountslist.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function Orderlistcall() {
+	$("#ajaxLoading").show();
+	$.ajax({
+		type : "POST",
+		url : "../jsp/orderlist.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function getuploadedfileslist() {
+	$("#ajaxLoading").show();
+	$.ajax({
+		type : "POST",
+		url : "../jsp/unitfileslist.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+
+function newaccount() {
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/newaccount.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function newaccountform() {
+	// get the form values  
+	var userName = $('#userName').val();
+
+	var password = $('#password').val();
+	
+	$.ajax({
+		type : "POST",
+		url : "../jsp/newaccount.htm",
+		data : "userName=" + userName + "&password=" + password,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+//interest form
+
+function newinterestlist() {
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/gpfinterestlist.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+function newinterest() {
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/gpfinterest.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function updatenewaccount(objectId) {
+	$.ajax({
+		type : "GET",
+		url : "../jsp/center.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function updateinterest(objectId) {
+	$.ajax({
+		type : "GET",
+		url : "../jsp/gpfinterest.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function updatepayunit(objectId) {
+	$.ajax({
+		type : "GET",
+		url : "../jsp/order.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function publishinterest(objectId) {
+
+	var answer = confirm("Do you want to Publish?");
+	if (answer == true)
+		dataobject = "objectId=" + objectId;
+	else
+		return newinterestlist();
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/gpfinterestpublish.htm",
+		data : dataobject,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function deleteinterest(objectId) {
+
+	var answer = confirm("Do you want to Delete?");
+	if (answer == true)
+		dataobject = "objectId=" + objectId;
+	else
+		return newinterestlist();
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/gpfinterestdelete.htm",
+		data : dataobject,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function deleteerrorfile(objectId) {
+
+	var answer = confirm("Do you want to Delete?");
+	if (answer == true)
+		dataobject = "objectId=" + objectId;
+	else
+		return newinterestlist();
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/deleteerrorfile.htm",
+		data : dataobject,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function deletegpfaccount(objectId) {
+
+	var answer = confirm("Do you want to Delete?");
+	if (answer == true)
+		dataobject = "objectId=" + objectId;
+	else
+		return getaccountslist();
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/deletegpfaccount.htm",
+		data : dataobject,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+// delete payunit
+function deletepayunit(objectId) {
+
+	var answer = confirm("Do you want to Delete?");
+	if (answer == true)
+		dataobject = "objectId=" + objectId;
+	else
+		return newinterestlist();
+
+	$.ajax({
+		type : "GET",
+		url : "../jsp/payunitdelete.htm",
+		data : dataobject,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+
+function newinterestform() {
+	// get the form values  
+	var fromDate = $('#fromDate').val();
+	var toDate = $('#toDate').val();
+	var rateOfInterest = $('#rateOfInterest').val();
+	var objectId = $('#objectId').val();
+	var dataobject = "fromDate=" + fromDate + "&toDate=" + toDate
+			+ "&rateOfInterest=" + rateOfInterest;
+	var urlstring = "../jsp/gpfinterest.htm";
+	if (objectId != "") {
+		var answer = confirm("Do you want to update data?");
+		if (answer == true)
+			dataobject = "fromDate=" + fromDate + "&toDate=" + toDate
+					+ "&rateOfInterest=" + rateOfInterest + "&objectId="
+					+ objectId;
+		else
+			return newinterestlist();
+	}
+
+	$.ajax({
+		type : "POST",
+		url : urlstring,
+		//data: "fromDate=" + fromDate +"&toDate="+toDate+"&rateOfInterest="+rateOfInterest+"&objectId="+objectId,  
+		data : dataobject,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+//end interest form
+
+function gpfcontribution() {
+	
+	$.ajax({
+		type : "POST",
+		url : "../jsp/accountcontribution.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+
+function gpfcontributionform() {
+	// get the form values  
+
+	var userName = $('#userName').val();
+	var password = $('#password').val();
+	
+	$.ajax({
+		type : "POST",
+		url : "../jsp/loginform.htm",
+		data : "userName=" + userName + "&password=" + password,
+
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+	//alert("contributionform.htmcontributionform.htm..........!");
+}
+
+function showLoanApp(objectId) {
+	
+	$.ajax({
+		type : "GET",
+		url : "../jsp/loanapplicationdatasheet.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#objectdatasheet').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+
+
+function showGPFContrib() {
+	//alert("I am here"+objectId);
+	var objectId = $('#objectId').val();
+	
+	$.ajax({
+		type : "GET",
+		url : "../jsp/contribpanel.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#contribpanel').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function showGPFContribstmt() {
+	//alert("I am here"+objectId);
+	var objectId = $('#objectId').val();
+	var fyear = $('#fyear').val();
+	
+	$.ajax({
+		type : "GET",
+		url : "../jsp/contribpanel.htm",
+		data : "objectId=" + objectId + "&fyear=" + fyear,
+		success : function(response) {
+			// we have the response  
+			$('#contribstmtn').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function gPFContribForm() {
+	//alert("Im here");
+	var unitCode = $('#unitCode').val();
+	var gpfNumber = $('#gpfNumber').val();
+	var contribution = $('#contribution').val();
+	var advance = $('#advance').val();
+	var monthYear = $('#monthYear').val();
+
+	$.ajax({
+		type : "POST",
+		url : "../jsp/contribpanelform.htm",
+		data : "unitCode=" + unitCode + "&gpfNumber=" + gpfNumber
+				+ "&contribution=" + contribution + "&advance=" + advance
+				+ "&monthYear=" + monthYear,
+		success : function(response) {
+			// we have the response  
+			$('#contribpanel').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+function searchorder() {
+	
+	var purchaseOrderId = $('#purchaseOrderId').val();
+	alert("purchaseOrderId---"+purchaseOrderId);
+	//var name = $('#empname').val();
+	//alert("Im here"+gpfNumber);
+	$.ajax({
+		type : "POST",
+		url : "../jsp/searchorderlist.htm",
+		data : "purchaseOrderId=" + purchaseOrderId,/*+ "&empname=" + name,*/
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+
+
+
+function showfileuploadform() {
+	
+	$.ajax({
+		type : "POST",
+		url : "../jsp/uploadfile.htm",
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
+
+
+function savexls() {
+	//can perform client side field required checking for "fileToUpload" field
+	//alert("I am inside");
+	$.ajax({
+		url: "../jsp/uploadfile.htm",
+		type: 'POST',
+		data: {},
+		contentType: 'application/x-www-form-urlencoded',
+		success : function(response) {
+			$('#content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+	return false;
+}
+
+function updatemonthcontrib(objectId) {
+	$.ajax({
+		type : "GET",
+		url : "../jsp/updategpfcontribform.htm",
+		data : "objectId=" + objectId,
+		success : function(response) {
+			// we have the response  
+			$('#content').html(response);
+
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+}
