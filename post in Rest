@@ -1,0 +1,49 @@
+Important of post method ::
+
+1) Every time better to take @FormParam("userId") String name for post method .
+
+2) At Provider End :::--->>> 
+
+  @POST
+	@Path("/addPost")
+	public Response addUser(@FormParam("userId") String name,
+		@FormParam("password") String password) {
+
+		return Response.status(200).entity("addUser is called, name : " + name + ", age : " + password)
+			.build();
+
+	}
+	
+	At Client End:
+	
+	
+	    HttpClient client = new HttpClient();
+	    //  client.getParams().setParameter("http.useragent", "Test Client");
+
+	      BufferedReader br = null;
+
+	      PostMethod method = new PostMethod("http://localhost:2525/services/rest/status/addPost?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94");
+	      method.addParameter("userId", "Anji"); 
+	      method.addParameter("password","AnjiReddy");
+	      try{
+	        int returnCode = client.executeMethod(method);
+
+	        if(returnCode == HttpStatus.SC_NOT_IMPLEMENTED) {
+	          System.err.println("The Post method is not implemented by this URI");
+	          // still consume the response body
+	          method.getResponseBodyAsString();
+	        } else {
+	          br = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream()));
+	          String readLine;
+	          while(((readLine = br.readLine()) != null)) {
+	            System.err.println(readLine);
+	        }
+	        }
+	      } catch (Exception e) {
+	        System.err.println(e);
+	      } finally {
+	        method.releaseConnection();
+	        if(br != null) try { br.close(); } catch (Exception fe) {}
+	      }
+	  
+  }
