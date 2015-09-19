@@ -1,0 +1,23 @@
+ JSON Data Post example ::
+
+Provider Service::
+@POST
+	@Path("/addPostDTO")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addDTO(Car car) {
+		return Response.status(200).entity(car.toString()).build();
+	}
+
+Request :
+http://localhost:2525/services/rest/status/addPostDTO?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94
+
+POST Data:
+
+{
+    "color":"Blue",
+    "miles":200,
+    "vin":"1234"
+}
+
+Output :
+Car [vin=1234, color=Blue, miles=200]
