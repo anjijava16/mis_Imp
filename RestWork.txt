@@ -1,0 +1,51 @@
+====
+@POST
+@Consumes(MediaType.APPLICATION_XML)
+@Produces(MediaType.TEXT_PLAIN)
+public int createPracel(InputStream is){
+Here is nothing but XML file 
+DocumentBuilderFactory factory=null;
+DocumnetBuilder builder=nulll
+factory=DocumnetBuilderFactory.newInstance();
+builder=factory.newDocumentBuilder();
+Document doc=builder.parse(is); // Here load the XML File Data
+Node node=Document.getFirstChild();
+}
+
+====================================================================================
+ For Output is StreamingOutput (here xml ) file and StreamingOutput is (jax-rs )package
+ 
+ @GET
+ @Producese(MediaType.APPLICATION_XML)
+ public StreamingOutput getParcelInfo(@QueryParam("accdNum")int accdNum){
+ 
+ 
+ }
+ 
+ private final class ParcelInfoWriter implements StreamingOutput{
+ private String xml;
+ public ParcelInfoWriter(String xml){
+ this.xml=xml;
+ }
+ public void write()throws IOException,WebApplicationException{
+ PrintWriter pw=new PrintWriter(out);
+ pw.print(xml);
+ pw.close();
+ }
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
