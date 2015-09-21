@@ -1,0 +1,10 @@
+
+chrome-extension://hgmloofddffdnphfgcellkdfbfbjeloo/RestClient.html
+
+chrome-extension://ecjfcmddigpdlehfhdnnnhfgihkmejin/index.html# (Advanced Rest Client)
+
+chrome://restclient/content/restclient.html (For FireFox)
+
+http://localhost:2525/services/rest/status/getCarInfo?key=fd3ebf59-3ed8-424f-a99d-5cfad4337d94
+Rest URL For FireFox Browser:::
+chrome://restclient/content/restclient.html
