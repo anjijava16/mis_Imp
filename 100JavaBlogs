@@ -1,0 +1,457 @@
+<table border=1 width=100%>
+<tr>
+<td></td>
+<td><strong>Name</strong>(Site/People)</td>
+<td><strong>Country</strong></td>
+<td><strong>Key Words</strong></td>
+</tr>
+<tr>
+<td>0</td>
+<td><a href="http://www.javased.com">Java SED</a></td>
+<td>America</td>
+<td> not a blog, a useful Java tool</td>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="http://www.adam-bien.com/roller/abien/">Adam Bien</a></td>
+<td>Germany</td>
+<td>Java EE</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="http://antoniogoncalves.org/">Antonio Goncalves</a></td>
+<td>France</td>
+<td>Author of Java EE 7</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="http://henrikwarne.com/">Henrik Warne</a></td>
+<td>Sweden</td>
+<td>Thoughts on programming</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="http://keaplogik.blogspot.com/">Billy Yarosh</a></td>
+<td>America</td>
+<td>Coding Cures</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="http://www.vogella.com/">Lars Vogel</a></td>
+<td>Germany</td>
+<td>Android and Eclipse</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="http://javax0.wordpress.com/">Peter Verhas</a></td>
+<td> Hungary</td>
+<td>Pure Java</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="http://martinfowler.com/">Martin Fowler</a></td>
+<td>America</td>
+<td>Author, Speaker</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="http://techblog.bozho.net/">Bozhidar Bozhanov</a></td>
+<td>Bulgaria</td>
+<td>JEE</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="http://insightfullogic.com/blog/">Richard Warburton</a></td>
+<td>UK</td>
+<td>Java 8 Lambdas</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="http://invariantproperties.com/">Bear Giles</a></td>
+<td>America</td>
+<td>JEE</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="http://blog.mikiobraun.de/">Marginally Interesting</a></td>
+<td>Germany</td>
+<td>Machine Learning</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="http://pragmaticintegrator.wordpress.com/">Pascal Alma</a></td>
+<td>America</td>
+<td>JEE</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="http://blog.drorhelper.com/">Dror Helper</a></td>
+<td>America</td>
+<td>Consultant</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="http://juristr.com/">Juri Strumpflohner</a></td>
+<td>Italy</td>
+<td>JavaScript</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="https://blogs.oracle.com/reza/">Reza Rahman</a></td>
+<td>America</td>
+<td>Java EE/Glassfish</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="http://www.bigfastblog.com/">Phil Whelan</a></td>
+<td>Canada</td>
+<td>Web</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="http://brettporter.wordpress.com/">Brett Porter</a></td>
+<td> Australia </td>
+<td>Co-author of Apache Maven 2</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="http://www.benmccann.com/blog/">Ben McCann</a></td>
+<td>America</td>
+<td>Co-founder at Connectifier</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a href="http://www.javaposse.com/">Java Posse</a></td>
+<td>America</td>
+<td>Some useful links</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="http://www.markhneedham.com/blog/">Mark Needham</a></td>
+<td>UK</td>
+<td>Data</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a href="http://www.takipiblog.com/">Iris Shoor</a></td>
+<td>Israel</td>
+<td>Debug</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a href="http://blog.pengyifan.com/">Yifan Peng</a></td>
+<td>America</td>
+<td>Graduate Student</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a href="http://plumbr.eu/blog">Nikita Salnikov Tarnovski</a></td>
+<td>Estonia</td>
+<td>Memory Leaks</td>
+</tr>
+<tr>
+<td>24</td>
+<td><a href="http://marxsoftware.blogspot.com/">Dustin Marx</a></td>
+<td>America</td>
+<td>Actual Events</td>
+</tr>
+<tr>
+<td>25</td>
+<td><a href="http://blog.thesoftwarecraft.com/">Bart Bakker</a></td>
+<td>Netherland</td>
+<td>Agile</td>
+</tr>
+<tr>
+<td>26</td>
+<td><a href="http://gunnarpeipman.com/">Gunnar Peipman</a></td>
+<td>America</td>
+<td>non-java</td>
+</tr>
+<tr>
+<td>27</td>
+<td><a href="http://jobtipsforgeeks.com/">Dave Fecak</a></td>
+<td>America</td>
+<td>Job Tips for Programmers</td>
+</tr>
+<tr>
+<td>28</td>
+<td><a href="http://blog.jooq.org/">JOOQ</a></td>
+<td>Switzerland</td>
+<td>SQL</td>
+</tr>
+<tr>
+<td>29</td>
+<td><a href="http://www.petrikainulainen.net/">Petri Kainulainen</a></td>
+<td>Finland</td>
+<td>Web</td>
+</tr>
+<tr>
+<td>30</td>
+<td><a href="http://blog.informatech.cr">Informatech CR</a> </td>
+<td>Costa Rica</td>
+<td></td>
+</tr>
+<tr>
+<td>31</td>
+<td><a href="http://blog.arungupta.me/">Arun Gupta</a></td>
+<td>America</td>
+<td>Java EE</td>
+</tr>
+<tr>
+<td>32</td>
+<td><a href="http://mechanical-sympathy.blogspot.com/">Mechanical Sympathy</a></td>
+<td>UK</td>
+<td>Performance</td>
+</tr>
+<tr>
+<td>33</td>
+<td><a href="http://matteo.vaccari.name/blog/">Extreme Enthusiasm</a></td>
+<td>Italy</td>
+<td>Agile</td>
+</tr>
+<tr>
+<td>34</td>
+<td><a href="http://steveblank.com/">Steve Blank</a></td>
+<td>America</td>
+<td> Author of The Startup Owner's Manual</td>
+</tr>
+<tr>
+<td>35</td>
+<td><a href="http://olivergierke.de/">Oliver Gierke</a></td>
+<td>Germany</td>
+<td>SpringSource</td>
+</tr>
+<tr>
+<td>36</td>
+<td><a href="http://blog.frankel.ch/">Nicolas Fränkel</a></td>
+<td>Switzerland</td>
+<td>Java EE</td>
+</tr>
+<tr>
+<td>37</td>
+<td><a href="http://blog.bdoughan.com/">Blaise Doughan</a></td>
+<td>America</td>
+<td>XML and JSON</td>
+</tr>
+<tr>
+<td>38</td>
+<td><a href="http://vladmihalcea.wordpress.com/">Vlad Mihalcea</a></td>
+<td> Romania</td>
+<td>Software Integration</td>
+</tr>
+<tr>
+<td>39</td>
+<td><a href="http://lckymn.com/about-kevin">Kevin Lee</a></td>
+<td>Australia</td>
+<td>Web</td>
+</tr>
+<tr>
+<td>40</td>
+<td><a href="http://java-performance.info/">Mikhail Vorontsov</a></td>
+<td>Australia</td>
+<td>Performance</td>
+</tr>
+<tr>
+<td>41</td>
+<td><a href="http://jenkov.com/">Jakob Jenkov</a></td>
+<td>Denmark</td>
+<td>Software Architecture</td>
+</tr>
+<tr>
+<td>42</td>
+<td><a href="http://learnjavafx.typepad.com/">Jim Weaver</a></td>
+<td></td>
+<td>Rich Client Java</td>
+</tr>
+<tr>
+<td>43</td>
+<td><a href="http://jonathangiles.net/">Jonathan Giles</a></td>
+<td>New Zealand</td>
+<td>Java FX</td>
+</tr>
+<tr>
+<td>44</td>
+<td><a href="http://steveonjava.com/">Stephen Chin</a></td>
+<td>America</td>
+<td>Java FX</td>
+</tr>
+<tr>
+<td>45</td>
+<td><a href="http://raibledesigns.com/">Matt Raible</a></td>
+<td>America</td>
+<td>Open Source Frameworks</td>
+</tr>
+<tr>
+<td>46</td>
+<td><a href="http://vanillajava.blogspot.ro/">Peter Lawrey</a></td>
+<td>UK</td>
+<td>Core Java</td>
+</tr>
+<tr>
+<td>47</td>
+<td><a href="http://www.beabetterdeveloper.com/">Gregor Riegler</a></td>
+<td>Austria</td>
+<td>OO Design, XP</td>
+</tr>
+<tr>
+<td>48</td>
+<td><a href="http://www.smartjava.org/">Jos Dirksen</a></td>
+<td>Netherlands</td>
+<td>SOA, HTML 5</td>
+</tr>
+<tr>
+<td>49</td>
+<td><a href="http://nerds-central.blogspot.com/">Alexander J. Turner</a></td>
+<td>UK</td>
+<td>Information, News And Views</td>
+</tr>
+<tr>
+<td>50</td>
+<td><a href="http://www.javaadvent.com/">Java Advent</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>51</td>
+<td><a href="http://www.caveofprogramming.com/">John Purcell</a></td>
+<td>Hungary</td>
+<td>Tutorials</td>
+</tr>
+<tr>
+<td>52</td>
+<td><a href="http://www.transylvania-jug.org/">Transylvania JUG</a></td>
+<td>UK</td>
+<td></td>
+</tr>
+<tr>
+<td>53</td>
+<td><a href="http://www.javaroots.com/">Java Roots</a> </td>
+<td></td>
+<td>Spring</td>
+</tr>
+<tr>
+<td>54</td>
+<td><a href="http://www.javaspecialists.eu/">Java Training</a></td>
+<td>Greece</td>
+<td>training</td>
+</tr>
+<tr>
+<td>55</td>
+<td><a href="http://www.allankelly.net/">Allan Kelly</a></td>
+<td>UK</td>
+<td>Software</td>
+</tr>
+<tr>
+<td>56</td>
+<td><a href="http://www.samaxes.com/">Samuel Santos</a></td>
+<td>Portugal</td>
+<td>Java EE</td>
+</tr>
+</tr>
+<tr>
+<td>57</td>
+<td> <a href="http://www.stephen-smith.co.uk/">Steve Smith</a></td>
+<td>UK</td>
+<td>Agile</td>
+</tr>
+<tr>
+<td>58</td>
+<td><a href="http://niklasschlimm.blogspot.com/">Niklas Schlimm</a></td>
+<td>Germany</td>
+<td>Multithreading</td>
+</tr>
+<tr>
+<td>59</td>
+<td><a href="http://bytebaker.com/">Shrutarshi Basu</a></td>
+<td>America</td>
+<td>PhD, Computer Science</td>
+</tr>
+<tr>
+<td>60</td>
+<td><a href="http://arhipov.blogspot.com/">Anton Arhipov</a>  </td>
+<td>Estonia</td>
+<td>Java EE</td>
+</tr>
+<tr>
+<td>61</td>
+<td><a href="http://blog.headius.com/">Charles Nutter</a></td>
+<td>America</td>
+<td>JVM</td>
+</tr>
+<tr>
+<td>62</td>
+<td><a href="http://redstack.wordpress.com/">RedStack</a></td>
+<td>America</td>
+<td>SOA, JVM</td>
+</tr>
+<tr>
+<td>63</td>
+<td><a href="http://blog.jamesdbloom.com/">James Bloom</a></td>
+<td>America</td>
+<td>JVM</td>
+</tr>
+<tr>
+<td>64</td>
+<td><a href="http://javaeesupportpatterns.blogspot.com/">Pierre-Hugues Charbonneau</a></td>
+<td>Canada</td>
+<td>Java EE</td>
+</tr>
+<tr>
+<td>65</td>
+<td><a href="http://www.baeldung.com/">Eugen Paraschiv</a></td>
+<td> Romania </td>
+<td>Java Web</td>
+</tr>
+<tr>
+<td>66</td>
+<td><a href="http://waynebeaton.wordpress.com/">Wayne Beaton</a></td>
+<td> America </td>
+<td>Eclipse</td>
+</tr>
+<tr>
+<td>67</td>
+<td><a href="http://blog.codinghorror.com/">Jeff Atwood</a></td>
+<td> America </td>
+<td>Stack Overflow</td>
+</tr>
+<tr>
+<td>68</td>
+<td><a href="http://stuartmarks.wordpress.com/" target="_blank">Stuart Marks</a></td>
+<td>America</td>
+<td>Oracle</td>
+</tr>
+<tr>
+<td>69</td>
+<td><a href="http://www.benstopford.com/" target="_blank">Ben Stopford</a></td>
+<td>UK</td>
+<td>Data Platform</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="http://www.programcreek.com/">Program Creek</a></td>
+<td>America</td>
+<td>Deep Understanding of Java Core</td>
+</table>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<p>Please leave your comment if you know some high quality Java blogs or find any errors in the list above. I will keep updating this list, but limit it up to 100! As this list is being read by thousands of people, if you don't want to be on the list, I can also take your blog off from the list. </p>
+<p>* This collection reflects my personal opinion. Not all links from comments will be added to the list.</p>
+
+<!-- Quick Adsense WordPress Plugin: http://quicksense.net/ -->
+<div style="float:none;margin:0px;">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5732630628268628";
+/* t430s */
+google_ad_slot = "8707837619";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
