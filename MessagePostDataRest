@@ -1,0 +1,62 @@
+URL : http://localhost:2525/mailServices/rest/mail/mailSent
+
+Method: POST
+
+Payload :
+{
+    "userEmailId":"anjaiahspr@gmail.com",
+    "operationId":200,
+    "operationName":"Adding Post",
+    "operationProjectName":"CampusSystem"
+}
+
+Class :
+@Path("/mail")
+public class MailResources {
+
+
+@POST
+@Path("logOut")
+public String logOut(@FormParam("username")String username){
+
+	return username;
+}
+/*
+@PUT
+@Path("/update")
+@Consumes(value = "application/json")
+public void updateCarInfo(Car car) {*/
+
+
+@Path("mailSent")
+@POST
+@Consumes(value="application/json")
+@Produces(value="application/json")
+public MessageResponseForm getMessageRequestForm( MessageRequestForm messageRequestForm){
+	MessageResponseForm messageResponseForm=new MessageResponseForm();
+	messageResponseForm.setOperationId(messageRequestForm.getOperationId());
+	messageResponseForm.setOperationStatusDate(new Date().toString());
+    messageResponseForm.setOperationStatusTimestamp(new Timestamp(new Date().getTime()).toString());	
+    messageResponseForm.setOperationName(messageRequestForm.getOperationName());
+    messageResponseForm.setOperationProjectName(messageRequestForm.getOperationProjectName());
+    messageResponseForm.setUserEmailId(messageRequestForm.getUserEmailId());
+    messageResponseForm.setOpertationStatus("SUCCESS");
+    messageResponseForm.setOperationReturnMessage("NEXT Solutions");
+	return messageResponseForm;
+}
+
+}
+
+
+Response  ::
+
+{
+opertationStatus: "SUCCESS"
+operationReturnMessage: "NEXT Solutions"
+operationStatusDate: "Fri Oct 02 15:21:52 SGT 2015"
+operationStatusTimestamp: "2015-10-02 15:21:52.994"
+userEmailId: "anjaiahspr@gmail.com"
+operationId: 200
+operationName: "Adding Post"
+operationProjectName: "CampusSystem"
+}
