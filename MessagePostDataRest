@@ -60,3 +60,53 @@ operationId: 200
 operationName: "Adding Post"
 operationProjectName: "CampusSystem"
 }
+
+
+Client Code :::---->>>>
+
+
+
+	public static void postResponseVO(){
+
+		try {
+
+			ClientConfig clientConfig = new DefaultClientConfig();
+     		clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+			Client client = Client.create(clientConfig);
+			
+			/**
+			 *  Adding Header based Creds 
+			 */
+			
+			
+					/*	 final HTTPBasicAuthFilter httpBasicAuthFilter=new	 HTTPBasicAuthFilter(BtsConstants.HTTP_HEADER_USERNAME,BtsConstants.HTTP_HEADER_PASSWORD);
+					      client.addFilter(httpBasicAuthFilter);
+					 	*/			 
+
+		    
+			WebResource webResource = client.resource("http://localhost:2525/mailServices/rest/mail/mailSent");
+			MessageRequestForm msg=new MessageRequestForm();
+			msg.setOperationId(1);
+			msg.setOperationName("Add Mesg");
+			msg.setUserEmailId("anjaiahspr@gmail.com");
+			msg.setOperationProjectName("Capmus App");
+
+			
+			JSONObject json=new JSONObject(msg);
+			System.out.println("JSON Data here "+json.toString());
+			//MessageRequestForm response = webResource.accept("application/json").type("application/json").post(MessageRequestForm.class, msg);
+			ClientResponse response = webResource.accept("application/json").type("application/json").post(ClientResponse.class, json.toString());
+			
+
+			MessageResponseForm messageResponseForm=response.getEntity(MessageResponseForm.class);
+			System.out.println(messageResponseForm);
+              
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+
+		
+	}
