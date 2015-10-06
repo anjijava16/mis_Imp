@@ -1,0 +1,14 @@
+keytool -genkey -keystore test.jks -alias mykey -storepass password -keypass password
+
+
+
+keytool -export -keystore test.jks -alias mykey -rfc public_ket.pem
+
+demo.cloudseal.com
+
+
+Mon
+
+
+
+
