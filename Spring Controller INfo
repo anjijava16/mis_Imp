@@ -1,0 +1,23 @@
+ModelMap VS ModelAttribute
+
+Model is an interface while ModelMap is a class.
+
+ModelAndView is just a container for both a ModelMap and a view object. It allows a controller to return both as a single value
+
+
+http://stackoverflow.com/questions/23576213/what-is-the-difference-between-modelattribute-model-addattribute-in-spring
+
+http://stackoverflow.com/questions/6302807/difference-	between-modelattribute-and-org-springframework-ui-modelmap-get
+
+
+You'll have to have a ContextLoaderListener in your web.xml - It loads your configuration files.
+
+<listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+You need to understand the difference between Web application context and root application context .
+
+In the web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext. These inherited beans defined can be overridden in the servlet-specific scope, and new scope-specific beans can be defined local to a given servlet instance.
+The dispatcher servlet's application context is a web application context which is only applicable for the Web classes . You cannot use these for your middle tier layers . These need a global app context using ContextLoaderListener .
+
+Read the spring reference here for spring mvc .
