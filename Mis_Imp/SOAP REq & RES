@@ -1,0 +1,12 @@
+            finally{
+            	LOGGER.info("#############################################################################Start Of Request Format ##########");
+            	LOGGER.info("Request Format"+_call.getMessageContext().getRequestMessage().getSOAPPartAsString());
+            	LOGGER.info("#############################################################################End Of Request Format ##########");
+            	
+            	LOGGER.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            	
+            	LOGGER.info("#############################################################################Start Of Response Format ##########");
+            	LOGGER.info("Response Format"+_call.getMessageContext().getResponseMessage().getSOAPPartAsString());
+            	System.out.println("Response Format"+_call.getMessageContext().getResponseMessage().getSOAPPartAsString());
+            	LOGGER.info("#############################################################################Start Of Response Format ##########");
+            }
