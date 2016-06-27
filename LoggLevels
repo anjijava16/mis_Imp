@@ -1,0 +1,11 @@
+
+log4j.logger.ABC_LOGS=INFO,ABC_LOGS
+
+INFO : means it is coming : INFO and Error 
+
+DEBUG : it is coming all INFO,debug,Error
+
+Error : Only Error
+
+
+ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
