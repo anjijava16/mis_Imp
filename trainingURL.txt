@@ -1,1 +1,7 @@
 https://github.com/SreeTraining
+
+http://javaconceptoftheday.com/array-of-objects-in-java/ (Good For Arrays Concepts)
+
+https://www.cs.bgu.ac.il/~ipc151/wiki.files/Class_Java_2.pdf(java PDF) Open Source University
+
+http://java2learn.com/control-statements/transfer-statements             (nice example sime & easy)
