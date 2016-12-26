@@ -1,0 +1,7 @@
+
+down vote
+You simply need to add the partner repository :
+
+sudo add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+sudo apt-get update 
+sudo apt-get install skype
